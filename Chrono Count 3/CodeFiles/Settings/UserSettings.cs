@@ -9,9 +9,13 @@ namespace Chrono_Count_3.CodeFiles.Settings
         private static int itemsPerPage;
         private static int[][] colourScheme;
         private static int defaultLength;
+
         private static LengthOptions descSize;
         private static LengthOptions dateSize;
         private static LengthOptions timeSize;
+
+        private static readonly LengthOptions[] lengthOptions = (LengthOptions[])Enum.GetValues(typeof(LengthOptions));
+        public static LengthOptions[] LengthOptionsList => lengthOptions;
 
         public UserSettings(string settingsPath) 
         {

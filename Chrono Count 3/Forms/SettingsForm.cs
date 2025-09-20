@@ -16,13 +16,13 @@ namespace Chrono_Count_3.Forms
             textbox_MidColour.Text = string.Join(",", UserSettings.ColourScheme[1]);
             textbox_BackColour.Text = string.Join(",", UserSettings.ColourScheme[2]);
 
-            combobox_DescLength.DataSource = Enum.GetValues(typeof(LengthOptions));
+            combobox_DescLength.DataSource = UserSettings.LengthOptionsList.ToArray();
             combobox_DescLength.SelectedItem = UserSettings.DescSize;
 
-            combobox_DateLength.DataSource = Enum.GetValues(typeof(LengthOptions));
+            combobox_DateLength.DataSource = UserSettings.LengthOptionsList.ToArray();
             combobox_DateLength.SelectedItem = UserSettings.DateSize;
 
-            combobox_TimeLength.DataSource = Enum.GetValues(typeof(LengthOptions));
+            combobox_TimeLength.DataSource = UserSettings.LengthOptionsList.ToArray();
             combobox_TimeLength.SelectedItem = UserSettings.TimeSize;
 
             mockTimeStamp();
@@ -32,23 +32,15 @@ namespace Chrono_Count_3.Forms
             BackColorIndicator.BackColor = Color.FromArgb(UserSettings.ColourScheme[2][0], UserSettings.ColourScheme[2][1], UserSettings.ColourScheme[2][2]);
         }
 
-        private void mockTimeStamp() 
+        private void mockTimeStamp()
         {
-            TimeStamp exampleTimeStamp = new TimeStamp
-            (
-                "This is an example of an description that you may use",
+            label_ExampleTimeStamp.Text = TimeStampHandler.CreateDummyTimeStampString(
+                "This is an example of a description that you may use",
                 DateTime.Now.AddDays(7),
-                [
-                    (LengthOptions)combobox_DescLength.SelectedItem!,
-                    (LengthOptions)combobox_DateLength.SelectedItem!,
-                    (LengthOptions)combobox_TimeLength.SelectedItem!
-                ]
+                combobox_DescLength.SelectedItem!.ToString()!,
+                combobox_DateLength.SelectedItem!.ToString()!,
+                combobox_TimeLength.SelectedItem!.ToString()!
             );
-
-            string desc = exampleTimeStamp.GetDesc();
-            string date = exampleTimeStamp.GetDate();
-            string time = exampleTimeStamp.GetTime();
-            label_ExampleTimeStamp.Text = $"{desc}\n{date}\n{time}";
         }
         private void combobox_DescLength_SelectionChangeCommitted(object sender, EventArgs e) { mockTimeStamp(); }
         private void combobox_TimeLength_SelectionChangeCommitted(object sender, EventArgs e) { mockTimeStamp(); }

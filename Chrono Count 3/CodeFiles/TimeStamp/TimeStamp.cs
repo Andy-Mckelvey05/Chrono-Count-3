@@ -1,10 +1,9 @@
-﻿using Chrono_Count_3.CodeFiles.Settings;
-using Chrono_Count_3.CodeFiles.TimeStamp.TimeStampAssist;
+﻿using Chrono_Count_3.CodeFiles.TimeStamp.TimeStampAssist;
 using Chrono_Count_3.CodeFiles.TimeStamp.TimeStampAssist.LengthOptionsContainer;
 
 namespace Chrono_Count_3.CodeFiles.TimeStamp
 {
-    public class TimeStamp : IComparable<TimeStamp>
+    internal class TimeStamp : IComparable<TimeStamp>
     {
         private readonly string name;
         private readonly DateTime date;
@@ -18,47 +17,25 @@ namespace Chrono_Count_3.CodeFiles.TimeStamp
         private readonly ITimeStampInfo dateItem;
         private readonly ITimeStampInfo timeItem;
 
-        public TimeStamp(string label, DateTime date, LengthOptions[]? lengthOptions = null)
+        public TimeStamp(string label, DateTime date, LengthOptions descOption, LengthOptions dateOption, LengthOptions timeOption, bool countToMax = true)
         {
-            LengthOptions descOptions;
-            LengthOptions dateOptions;
-            LengthOptions timeOptions;
-
             this.name = label;
             this.date = date;
 
-            if (lengthOptions == null)
-            {
-                descOptions = UserSettings.DescSize;
-                dateOptions = UserSettings.DateSize;
-                timeOptions = UserSettings.TimeSize;
-            }
-            else
-            {
-                if (lengthOptions.Length != 3)
-                    throw new ArgumentException("lengthOptions must contain 3 elements.", nameof(lengthOptions));
+            descItem = DisplayTypeFactory.Create(descOption, name, date);
+            dateItem = DisplayTypeFactory.Create(dateOption, name, date);
+            timeItem = DisplayTypeFactory.Create(timeOption, name, date);
 
-                descOptions = lengthOptions[0];
-                dateOptions = lengthOptions[1];
-                timeOptions = lengthOptions[2];
-            }
-
-            descItem = DisplayTypeFactory.Create(descOptions, name, date);
-            dateItem = DisplayTypeFactory.Create(dateOptions, name, date);
-            timeItem = DisplayTypeFactory.Create(timeOptions, name, date);
-
-            if (lengthOptions == null)
+            if (countToMax) 
             {
                 maxNameLen = Math.Max(maxNameLen, descItem.GetDescription().Length);
                 maxDateLen = Math.Max(maxDateLen, dateItem.GetFormatDate().Length);
                 maxTimeLen = Math.Max(maxTimeLen, timeItem.GetTimeLeft().Length);
             }
         }
-
         public string GetDesc() => descItem.GetDescription();
         public string GetDate() => dateItem.GetFormatDate();
         public string GetTime() => timeItem.GetTimeLeft();
-
 
         public static void UpdateMaxLens(TimeStamp[] items)
         {
