@@ -1,18 +1,8 @@
 ﻿using Chrono_Count_3.CodeFiles.TimeStamp.TimeStampAssist.LengthOptionsContainer;
 using System.Text.Json;
 
-namespace Chrono_Count_3.CodeFiles
+namespace Chrono_Count_3.CodeFiles.Settings
 {
-    // Data Transfer Object For Converting To And From JSONs
-    internal class UserSettingDTO 
-    {
-        public int itemsPerPageDTO { get; set; }
-        public required int[][] colourSchemeDTO { get; set; }
-        public int defaultLengthDTO { get; set; }
-        public LengthOptions descSizeDTO { get; set; }
-        public LengthOptions dateSizeDTO { get; set; }
-        public LengthOptions timeSizeDTO { get; set; }
-    }
     class UserSettings
     {
         // Static Veribles (Accessed by the rest of the programme)
@@ -36,7 +26,6 @@ namespace Chrono_Count_3.CodeFiles
         public static LengthOptions DateSize { get { return dateSize; } }
         public static LengthOptions TimeSize { get { return timeSize; } }
 
-        // Read/Write Functions
         public static void ReadSettingsJSON(string settingsPath)
         {
             try
@@ -65,10 +54,9 @@ namespace Chrono_Count_3.CodeFiles
             };
         }
 
-        // Get and Set JSON
         private static void SetSettingsJSON(string JSON)
         {
-            UserSettingDTO settings = JsonSerializer.Deserialize<UserSettingDTO>(JSON)!;
+            UserSettingDto settings = JsonSerializer.Deserialize<UserSettingDto>(JSON)!;
 
             itemsPerPage = settings.itemsPerPageDTO;
             colourScheme = settings.colourSchemeDTO;
@@ -79,7 +67,7 @@ namespace Chrono_Count_3.CodeFiles
         }
         private static string GetSettingsJSON() 
         {
-            UserSettingDTO settings = new UserSettingDTO
+            UserSettingDto settings = new UserSettingDto
             {
                 itemsPerPageDTO = itemsPerPage,
                 colourSchemeDTO = colourScheme,
@@ -92,7 +80,7 @@ namespace Chrono_Count_3.CodeFiles
         }
         private static string GetDefaultJSON()
         {
-            UserSettingDTO settings = new UserSettingDTO
+            UserSettingDto settings = new UserSettingDto
             {
                 itemsPerPageDTO = 10,
                 colourSchemeDTO =

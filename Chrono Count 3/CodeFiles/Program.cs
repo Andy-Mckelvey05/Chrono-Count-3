@@ -1,3 +1,5 @@
+using Chrono_Count_3.CodeFiles.Settings;
+
 namespace Chrono_Count_3.CodeFiles
 {
     internal static class Program

@@ -1,72 +1,65 @@
-﻿using Chrono_Count_3.CodeFiles.TimeStamp.TimeStampAssist;
+﻿using Chrono_Count_3.CodeFiles.Settings;
+using Chrono_Count_3.CodeFiles.TimeStamp.TimeStampAssist;
 using Chrono_Count_3.CodeFiles.TimeStamp.TimeStampAssist.LengthOptionsContainer;
 
 namespace Chrono_Count_3.CodeFiles.TimeStamp
 {
     public class TimeStamp : IComparable<TimeStamp>
     {
-        // Constructor:
         private readonly string name;
         private readonly DateTime date;
+
         private static int maxNameLen;
         private static int maxDateLen;
         private static int maxTimeLen;
 
-        // Display Types
-        private LengthOptions desc_Options;
-        private LengthOptions date_Options;
-        private LengthOptions time_Options;
-
         // Used to Set Edit ToString
-        private ITimeStampInfo descItem;
-        private ITimeStampInfo dateItem;
-        private ITimeStampInfo timeItem;
+        private readonly ITimeStampInfo descItem;
+        private readonly ITimeStampInfo dateItem;
+        private readonly ITimeStampInfo timeItem;
 
         public TimeStamp(string label, DateTime date, LengthOptions[]? lengthOptions = null)
         {
-            name = label;
+            LengthOptions descOptions;
+            LengthOptions dateOptions;
+            LengthOptions timeOptions;
+
+            this.name = label;
             this.date = date;
 
-            if (lengthOptions == null) 
+            if (lengthOptions == null)
             {
-                desc_Options = UserSettings.DescSize;
-                date_Options = UserSettings.DateSize;
-                time_Options = UserSettings.TimeSize;
+                descOptions = UserSettings.DescSize;
+                dateOptions = UserSettings.DateSize;
+                timeOptions = UserSettings.TimeSize;
+            }
+            else
+            {
+                if (lengthOptions.Length != 3)
+                    throw new ArgumentException("lengthOptions must contain 3 elements.", nameof(lengthOptions));
 
-                descItem = DisplayTypeFactory.Create(desc_Options, name, date);
-                dateItem = DisplayTypeFactory.Create(date_Options, name, date);
-                timeItem = DisplayTypeFactory.Create(time_Options, name, date);
+                descOptions = lengthOptions[0];
+                dateOptions = lengthOptions[1];
+                timeOptions = lengthOptions[2];
+            }
 
+            descItem = DisplayTypeFactory.Create(descOptions, name, date);
+            dateItem = DisplayTypeFactory.Create(dateOptions, name, date);
+            timeItem = DisplayTypeFactory.Create(timeOptions, name, date);
+
+            if (lengthOptions == null)
+            {
                 maxNameLen = Math.Max(maxNameLen, descItem.GetDescription().Length);
                 maxDateLen = Math.Max(maxDateLen, dateItem.GetFormatDate().Length);
                 maxTimeLen = Math.Max(maxTimeLen, timeItem.GetTimeLeft().Length);
             }
-            else 
-            {
-                desc_Options = lengthOptions[0];
-                date_Options = lengthOptions[1];
-                time_Options = lengthOptions[2];
-
-                descItem = DisplayTypeFactory.Create(desc_Options, name, date);
-                dateItem = DisplayTypeFactory.Create(date_Options, name, date);
-                timeItem = DisplayTypeFactory.Create(time_Options, name, date);
-            }
-        }
-        // Allows for Indevisual Elements to be Returned
-        public string getDesc()
-        {
-            return descItem.GetDescription();
-        }
-        public string getDate()
-        {
-            return dateItem.GetFormatDate();
-        }
-        public string getTime()
-        {
-            return timeItem.GetTimeLeft();
         }
 
-        // Sets MaxLens Based Off List, (needed when items are removed)
+        public string GetDesc() => descItem.GetDescription();
+        public string GetDate() => dateItem.GetFormatDate();
+        public string GetTime() => timeItem.GetTimeLeft();
+
+
         public static void UpdateMaxLens(TimeStamp[] items)
         {
             maxNameLen = 0;
@@ -87,12 +80,11 @@ namespace Chrono_Count_3.CodeFiles.TimeStamp
         }
 
         // When Sort() is called on a list of TimeStamp, Sorts the List to Closest First
-        public int CompareTo(TimeStamp other) // Sorts a list of entries by the length of the span 
+        public int CompareTo(TimeStamp other)
         {
             return date.Subtract(DateTime.Now).CompareTo(other.date.Subtract(DateTime.Now));
         }
 
-        // Display String Based on User Settings
         public override string ToString()
         {
             string desc = descItem.GetDescription();

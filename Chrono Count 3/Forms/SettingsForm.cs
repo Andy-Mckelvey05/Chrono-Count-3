@@ -1,4 +1,4 @@
-﻿using Chrono_Count_3.CodeFiles;
+﻿using Chrono_Count_3.CodeFiles.Settings;
 using Chrono_Count_3.CodeFiles.TimeStamp;
 using Chrono_Count_3.CodeFiles.TimeStamp.TimeStampAssist.LengthOptionsContainer;
 
@@ -45,9 +45,9 @@ namespace Chrono_Count_3.Forms
                 ]
             );
 
-            string desc = exampleTimeStamp.getDesc();
-            string date = exampleTimeStamp.getDate();
-            string time = exampleTimeStamp.getTime();
+            string desc = exampleTimeStamp.GetDesc();
+            string date = exampleTimeStamp.GetDate();
+            string time = exampleTimeStamp.GetTime();
             label_ExampleTimeStamp.Text = $"{desc}\n{date}\n{time}";
         }
         private void combobox_DescLength_SelectionChangeCommitted(object sender, EventArgs e) { mockTimeStamp(); }
