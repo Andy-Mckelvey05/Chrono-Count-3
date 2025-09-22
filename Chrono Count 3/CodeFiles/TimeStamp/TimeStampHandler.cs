@@ -1,18 +1,22 @@
 ﻿using Chrono_Count_3.CodeFiles.Settings;
 using Chrono_Count_3.CodeFiles.TimeStamp.TimeStampAssist.LengthOptionsContainer;
+using System.Globalization;
+using System.Text.Json;
 
 namespace Chrono_Count_3.CodeFiles.TimeStamp
 {
-    internal class TimeStampHandler
+    public class TimeStampHandler
     {
-        private static List<TimeStamp> itemList = new();
+        private readonly string filePath;
+        private List<TimeStamp> itemList = new();
 
-        public static void ReadFromFile() 
-        { 
-            throw new NotImplementedException();
+        public TimeStampHandler(string filePath)
+        {
+            this.filePath = filePath;
+            ReadFromFile();
         }
 
-        public static void AddTimeStamp(string label, DateTime date) 
+        public void AddTimeStamp(string label, DateTime date) 
         {
             var item = new TimeStamp(
                 label,
@@ -25,6 +29,54 @@ namespace Chrono_Count_3.CodeFiles.TimeStamp
             itemList.Sort();
         }
 
+        public void DisplayItems(ListBox listbox) 
+        {
+            listbox.Items.Clear();
+            foreach (var item in itemList)
+            {
+                listbox.Items.Add(item.ToString());
+            }
+        }
+
+        public void ReadFromFile()
+        {
+            itemList = new List<TimeStamp>();
+
+            if (!File.Exists(filePath))
+            {
+                File.WriteAllText(filePath, "");
+                return;
+            }
+
+            foreach (var line in File.ReadAllLines(filePath))
+            {
+                if (string.IsNullOrWhiteSpace(line)) continue;
+
+                var parts = line.Split(',');
+
+                if (parts.Length < 2) continue;
+
+                string label = parts[0];
+                if (DateTime.TryParseExact(parts[1], "o", CultureInfo.InvariantCulture,
+                                           DateTimeStyles.None, out DateTime date))
+                {
+                    AddTimeStamp(label, date);
+                }
+            }
+        }
+
+        public void UpdateFile()
+        {
+            // Overwrite file
+            using (var writer = new StreamWriter(filePath, false))
+            {
+                foreach (var item in itemList)
+                {
+                    writer.WriteLine($"{item.Name},{item.Date:o}");
+                }
+            }
+        }
+
         public static string CreateDummyTimeStampString(string label, DateTime date, string descOptionStr, string dateOptionStr, string timeOptionStr)
         {
             LengthOptions descOption = Enum.Parse<LengthOptions>(descOptionStr);
@@ -33,14 +85,6 @@ namespace Chrono_Count_3.CodeFiles.TimeStamp
 
             var ts = new TimeStamp(label, date, descOption, dateOption, timeOption, false);
             return $"{ts.GetDesc()}\n{ts.GetDate()}\n{ts.GetTime()}";
-        }
-
-        public static void DisplayItems(ListBox listbox) 
-        {
-            foreach (var item in itemList)
-            {
-                listbox.Items.Add(item.ToString());
-            }
         }
     }
 }

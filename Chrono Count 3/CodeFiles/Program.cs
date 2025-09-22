@@ -1,4 +1,5 @@
 using Chrono_Count_3.CodeFiles.Settings;
+using Chrono_Count_3.CodeFiles.TimeStamp;
 
 namespace Chrono_Count_3.CodeFiles
 {
@@ -10,13 +11,14 @@ namespace Chrono_Count_3.CodeFiles
         [STAThread]
         static void Main()
         {
-            string dataPath = $@"{Environment.CurrentDirectory}\ChronoCount2.csv";
+            string dataPath = $@"{Environment.CurrentDirectory}\data.csv";
             string settingsPath = $@"{Environment.CurrentDirectory}\UserSettings.json";
 
             UserSettings userSettings = new UserSettings(settingsPath);
+            TimeStampHandler timeStampHandler = new TimeStampHandler(dataPath);        
 
             ApplicationConfiguration.Initialize();
-            Application.Run(new HomeForm());
+            Application.Run(new HomeForm(timeStampHandler, userSettings));
         }
     }
 }

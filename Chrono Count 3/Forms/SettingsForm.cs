@@ -16,13 +16,13 @@ namespace Chrono_Count_3.Forms
             textbox_MidColour.Text = string.Join(",", UserSettings.ColourScheme[1]);
             textbox_BackColour.Text = string.Join(",", UserSettings.ColourScheme[2]);
 
-            combobox_DescLength.DataSource = UserSettings.LengthOptionsList.ToArray();
+            combobox_DescLength.DataSource = Enum.GetValues(typeof(LengthOptions));
             combobox_DescLength.SelectedItem = UserSettings.DescSize;
 
-            combobox_DateLength.DataSource = UserSettings.LengthOptionsList.ToArray();
+            combobox_DateLength.DataSource = Enum.GetValues(typeof(LengthOptions));
             combobox_DateLength.SelectedItem = UserSettings.DateSize;
 
-            combobox_TimeLength.DataSource = UserSettings.LengthOptionsList.ToArray();
+            combobox_TimeLength.DataSource = Enum.GetValues(typeof(LengthOptions));
             combobox_TimeLength.SelectedItem = UserSettings.TimeSize;
 
             mockTimeStamp();
@@ -34,12 +34,16 @@ namespace Chrono_Count_3.Forms
 
         private void mockTimeStamp()
         {
+            string descOption = combobox_DescLength.SelectedItem!.ToString()!;
+            string dateOption = combobox_DateLength.SelectedItem!.ToString()!;
+            string timeOption = combobox_TimeLength.SelectedItem!.ToString()!;
+
             label_ExampleTimeStamp.Text = TimeStampHandler.CreateDummyTimeStampString(
                 "This is an example of a description that you may use",
                 DateTime.Now.AddDays(7),
-                combobox_DescLength.SelectedItem!.ToString()!,
-                combobox_DateLength.SelectedItem!.ToString()!,
-                combobox_TimeLength.SelectedItem!.ToString()!
+                descOption,
+                dateOption,
+                timeOption
             );
         }
         private void combobox_DescLength_SelectionChangeCommitted(object sender, EventArgs e) { mockTimeStamp(); }

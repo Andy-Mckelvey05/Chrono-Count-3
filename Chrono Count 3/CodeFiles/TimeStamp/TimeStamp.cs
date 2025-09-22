@@ -33,6 +33,9 @@ namespace Chrono_Count_3.CodeFiles.TimeStamp
                 maxTimeLen = Math.Max(maxTimeLen, timeItem.GetTimeLeft().Length);
             }
         }
+
+        public string Name => name;
+        public DateTime Date => date;
         public string GetDesc() => descItem.GetDescription();
         public string GetDate() => dateItem.GetFormatDate();
         public string GetTime() => timeItem.GetTimeLeft();
