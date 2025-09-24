@@ -38,9 +38,9 @@
             combobox_DateLength = new ComboBox();
             combobox_TimeLength = new ComboBox();
             groupbox_Colours = new GroupBox();
-            BackColorIndicator = new Panel();
-            MidColorIndicator = new Panel();
-            ForeColorIndicator = new Panel();
+            BackColourIndicator = new Panel();
+            MidColourIndicator = new Panel();
+            ForeColourIndicator = new Panel();
             label_ForeColour = new Label();
             textbox_MidColour = new TextBox();
             textbox_ForeColour = new TextBox();
@@ -84,6 +84,7 @@
             button_EditToggle.TabIndex = 1;
             button_EditToggle.Text = "Click to Edit Settings";
             button_EditToggle.UseVisualStyleBackColor = false;
+            button_EditToggle.Click += button_EditToggle_Click;
             // 
             // groupbox_SettingsPage
             // 
@@ -166,9 +167,9 @@
             // 
             // groupbox_Colours
             // 
-            groupbox_Colours.Controls.Add(BackColorIndicator);
-            groupbox_Colours.Controls.Add(MidColorIndicator);
-            groupbox_Colours.Controls.Add(ForeColorIndicator);
+            groupbox_Colours.Controls.Add(BackColourIndicator);
+            groupbox_Colours.Controls.Add(MidColourIndicator);
+            groupbox_Colours.Controls.Add(ForeColourIndicator);
             groupbox_Colours.Controls.Add(label_ForeColour);
             groupbox_Colours.Controls.Add(textbox_MidColour);
             groupbox_Colours.Controls.Add(textbox_ForeColour);
@@ -185,29 +186,29 @@
             groupbox_Colours.TabStop = false;
             groupbox_Colours.Text = "Colours";
             // 
-            // BackColorIndicator
+            // BackColourIndicator
             // 
-            BackColorIndicator.BorderStyle = BorderStyle.FixedSingle;
-            BackColorIndicator.Location = new Point(278, 111);
-            BackColorIndicator.Name = "BackColorIndicator";
-            BackColorIndicator.Size = new Size(90, 33);
-            BackColorIndicator.TabIndex = 31;
+            BackColourIndicator.BorderStyle = BorderStyle.FixedSingle;
+            BackColourIndicator.Location = new Point(278, 111);
+            BackColourIndicator.Name = "BackColourIndicator";
+            BackColourIndicator.Size = new Size(90, 33);
+            BackColourIndicator.TabIndex = 31;
             // 
-            // MidColorIndicator
+            // MidColourIndicator
             // 
-            MidColorIndicator.BorderStyle = BorderStyle.FixedSingle;
-            MidColorIndicator.Location = new Point(278, 67);
-            MidColorIndicator.Name = "MidColorIndicator";
-            MidColorIndicator.Size = new Size(90, 33);
-            MidColorIndicator.TabIndex = 30;
+            MidColourIndicator.BorderStyle = BorderStyle.FixedSingle;
+            MidColourIndicator.Location = new Point(278, 67);
+            MidColourIndicator.Name = "MidColourIndicator";
+            MidColourIndicator.Size = new Size(90, 33);
+            MidColourIndicator.TabIndex = 30;
             // 
-            // ForeColorIndicator
+            // ForeColourIndicator
             // 
-            ForeColorIndicator.BorderStyle = BorderStyle.FixedSingle;
-            ForeColorIndicator.Location = new Point(278, 28);
-            ForeColorIndicator.Name = "ForeColorIndicator";
-            ForeColorIndicator.Size = new Size(90, 33);
-            ForeColorIndicator.TabIndex = 29;
+            ForeColourIndicator.BorderStyle = BorderStyle.FixedSingle;
+            ForeColourIndicator.Location = new Point(278, 28);
+            ForeColourIndicator.Name = "ForeColourIndicator";
+            ForeColourIndicator.Size = new Size(90, 33);
+            ForeColourIndicator.TabIndex = 29;
             // 
             // label_ForeColour
             // 
@@ -255,6 +256,7 @@
             button_EditBackColour.TabIndex = 9;
             button_EditBackColour.Text = "Edit";
             button_EditBackColour.UseVisualStyleBackColor = false;
+            button_EditBackColour.Click += button_EditBackColour_Click;
             // 
             // label_BackColour
             // 
@@ -290,6 +292,7 @@
             button_EditForeColour.TabIndex = 7;
             button_EditForeColour.Text = "Edit";
             button_EditForeColour.UseVisualStyleBackColor = false;
+            button_EditForeColour.Click += button_EditForeColour_Click;
             // 
             // label_MidColour
             // 
@@ -314,6 +317,7 @@
             button_EditMidColour.TabIndex = 8;
             button_EditMidColour.Text = "Edit";
             button_EditMidColour.UseVisualStyleBackColor = false;
+            button_EditMidColour.Click += button_EditMidColour_Click;
             // 
             // label_ItemsPerPage
             // 
@@ -352,6 +356,7 @@
             Name = "SettingsForm";
             StartPosition = FormStartPosition.CenterParent;
             Text = "Settings Form";
+            Load += SettingsForm_Load;
             groupbox_SettingsPage.ResumeLayout(false);
             groupbox_SettingsPage.PerformLayout();
             groupbox_Display.ResumeLayout(false);
@@ -382,8 +387,8 @@
         private ComboBox combobox_DateLength;
         private Label label_ExampleTimeStamp;
         private GroupBox groupbox_Display;
-        private Panel BackColorIndicator;
-        private Panel MidColorIndicator;
-        private Panel ForeColorIndicator;
+        private Panel BackColourIndicator;
+        private Panel MidColourIndicator;
+        private Panel ForeColourIndicator;
     }
 }

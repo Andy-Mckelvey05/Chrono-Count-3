@@ -158,7 +158,9 @@
             // 
             // timer_GameTime
             // 
+            timer_GameTime.Enabled = true;
             timer_GameTime.Interval = 500;
+            timer_GameTime.Tick += timer_GameTime_Tick;
             // 
             // HomeForm
             // 

@@ -6,14 +6,14 @@ namespace Chrono_Count_3
 {
     public partial class HomeForm : Form
     {
-        private readonly TimeStampHandler timeStampHandler;
         private readonly UserSettings userSettings;
+        private readonly TimeStampHandler timeStampHandler;
 
-        public HomeForm(TimeStampHandler timeStampHandler, UserSettings userSettings)
+        public HomeForm(UserSettings userSettings, TimeStampHandler timeStampHandler)
         {
             InitializeComponent();
-            this.timeStampHandler = timeStampHandler;
             this.userSettings = userSettings;
+            this.timeStampHandler = timeStampHandler;
 
             //timeStampHandler.AddTimeStamp("New Year's Day", new DateTime(2025, 1, 1));
             //timeStampHandler.AddTimeStamp("Valentine's Day", new DateTime(2025, 2, 14));
@@ -58,8 +58,13 @@ namespace Chrono_Count_3
         }
         private void button_OpenSettingsForm_Click(object sender, EventArgs e)
         {
-            SettingsForm settingsForm = new SettingsForm();
+            SettingsForm settingsForm = new SettingsForm(userSettings);
             settingsForm.ShowDialog();
+        }
+
+        private void timer_GameTime_Tick(object sender, EventArgs e)
+        {
+            timeStampHandler.DisplayItems(listbox_MainDisplay);
         }
     }
 }

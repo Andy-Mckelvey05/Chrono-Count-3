@@ -5,29 +5,26 @@ namespace Chrono_Count_3.CodeFiles.Settings
 {
     public class UserSettings
     {
-        // Static Veribles (Accessed by the rest of the programme)
-        private static int itemsPerPage;
-        private static int[][] colourScheme;
-        private static int defaultLength;
-
-        private static LengthOptions descSize;
-        private static LengthOptions dateSize;
-        private static LengthOptions timeSize;
+        private int itemsPerPage;
+        private int[][] colourScheme;
+        private int defaultLength;
+        private LengthOptions descSize;
+        private LengthOptions dateSize;
+        private LengthOptions timeSize;
 
         public UserSettings(string settingsPath) 
         {
             ReadSettingsJSON(settingsPath);
         }
 
-        // Getters For Static Usersettings
-        public static int ItemsPerPage { get { return itemsPerPage; }}
-        public static int[][] ColourScheme { get { return colourScheme!; } }
-        public static int DefaultLength { get { return defaultLength; } }
-        public static LengthOptions DescSize { get { return descSize; } }
-        public static LengthOptions DateSize { get { return dateSize; } }
-        public static LengthOptions TimeSize { get { return timeSize; } }
+        public int ItemsPerPage { get { return itemsPerPage; }}
+        public int[][] ColourScheme { get { return colourScheme!; } }
+        public int DefaultLength { get { return defaultLength; } }
+        public LengthOptions DescSize { get { return descSize; } }
+        public LengthOptions DateSize { get { return dateSize; } }
+        public LengthOptions TimeSize { get { return timeSize; } }
 
-        public static void ReadSettingsJSON(string settingsPath)
+        public void ReadSettingsJSON(string settingsPath)
         {
             try
             {
@@ -35,27 +32,28 @@ namespace Chrono_Count_3.CodeFiles.Settings
                 using (var readSettings = new StreamReader(settingsPath))
                 {
                     json = readSettings.ReadToEnd() ?? GetDefaultJSON();
-                };
+                }
                 SetSettingsJSON(json);
             }
             catch // Sets to default Settings if any issues occur
             {
+                MessageBox.Show("Failed to Load Settings, Setting to Defaults");
                 using (StreamWriter writeSettings = new(settingsPath))
                 {
                     writeSettings.WriteLine(GetDefaultJSON());
-                };
+                }
                 ReadSettingsJSON(settingsPath);
             }
         }
-        public static void WriteSettingsJSON(string settingsPath)
+        public void WriteSettingsJSON(string settingsPath)
         {
             using (StreamWriter writeSettings = new(settingsPath))
             {
                 writeSettings.WriteLine(GetSettingsJSON());
-            };
+            }
         }
 
-        private static void SetSettingsJSON(string JSON)
+        private void SetSettingsJSON(string JSON)
         {
             UserSettingDto settings = JsonSerializer.Deserialize<UserSettingDto>(JSON)!;
 
@@ -66,7 +64,7 @@ namespace Chrono_Count_3.CodeFiles.Settings
             dateSize = settings.dateSizeDTO;
             timeSize = settings.timeSizeDTO;
         }
-        private static string GetSettingsJSON() 
+        private string GetSettingsJSON() 
         {
             UserSettingDto settings = new UserSettingDto
             {
@@ -79,7 +77,7 @@ namespace Chrono_Count_3.CodeFiles.Settings
             };
             return JsonSerializer.Serialize(settings);
         }
-        private static string GetDefaultJSON()
+        private string GetDefaultJSON()
         {
             UserSettingDto settings = new UserSettingDto
             {

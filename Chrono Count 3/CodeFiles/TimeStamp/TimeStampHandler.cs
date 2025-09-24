@@ -1,17 +1,18 @@
 ﻿using Chrono_Count_3.CodeFiles.Settings;
 using Chrono_Count_3.CodeFiles.TimeStamp.TimeStampAssist.LengthOptionsContainer;
 using System.Globalization;
-using System.Text.Json;
 
 namespace Chrono_Count_3.CodeFiles.TimeStamp
 {
     public class TimeStampHandler
     {
+        private readonly UserSettings userSettings;
         private readonly string filePath;
         private List<TimeStamp> itemList = new();
 
-        public TimeStampHandler(string filePath)
+        public TimeStampHandler(UserSettings userSettings,string filePath)
         {
+            this.userSettings = userSettings;
             this.filePath = filePath;
             ReadFromFile();
         }
@@ -21,9 +22,9 @@ namespace Chrono_Count_3.CodeFiles.TimeStamp
             var item = new TimeStamp(
                 label,
                 date,
-                UserSettings.DescSize,
-                UserSettings.DateSize,
-                UserSettings.TimeSize
+                userSettings.DescSize,
+                userSettings.DateSize,
+                userSettings.TimeSize
             );
             itemList.Add(item);
             itemList.Sort();

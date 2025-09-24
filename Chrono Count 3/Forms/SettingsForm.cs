@@ -6,30 +6,33 @@ namespace Chrono_Count_3.Forms
 {
     public partial class SettingsForm : Form
     {
-        public SettingsForm()
+        private UserSettings userSettings;
+        public SettingsForm(UserSettings userSettings)
         {
             InitializeComponent();
 
-            textbox_ItemsPerPage.Text = UserSettings.ItemsPerPage.ToString();
+            this.userSettings = userSettings;
 
-            textbox_ForeColour.Text = string.Join(",", UserSettings.ColourScheme[0]);
-            textbox_MidColour.Text = string.Join(",", UserSettings.ColourScheme[1]);
-            textbox_BackColour.Text = string.Join(",", UserSettings.ColourScheme[2]);
+            textbox_ItemsPerPage.Text = userSettings.ItemsPerPage.ToString();
+
+            textbox_ForeColour.Text = string.Join(",", userSettings.ColourScheme[0]);
+            textbox_MidColour.Text = string.Join(",", userSettings.ColourScheme[1]);
+            textbox_BackColour.Text = string.Join(",", userSettings.ColourScheme[2]);
 
             combobox_DescLength.DataSource = Enum.GetValues(typeof(LengthOptions));
-            combobox_DescLength.SelectedItem = UserSettings.DescSize;
+            combobox_DescLength.SelectedItem = userSettings.DescSize;
 
             combobox_DateLength.DataSource = Enum.GetValues(typeof(LengthOptions));
-            combobox_DateLength.SelectedItem = UserSettings.DateSize;
+            combobox_DateLength.SelectedItem = userSettings.DateSize;
 
             combobox_TimeLength.DataSource = Enum.GetValues(typeof(LengthOptions));
-            combobox_TimeLength.SelectedItem = UserSettings.TimeSize;
+            combobox_TimeLength.SelectedItem = userSettings.TimeSize;
 
             mockTimeStamp();
-            
-            ForeColorIndicator.BackColor = Color.FromArgb(UserSettings.ColourScheme[0][0], UserSettings.ColourScheme[0][1], UserSettings.ColourScheme[0][2]);
-            MidColorIndicator.BackColor = Color.FromArgb(UserSettings.ColourScheme[1][0], UserSettings.ColourScheme[1][1], UserSettings.ColourScheme[1][2]);
-            BackColorIndicator.BackColor = Color.FromArgb(UserSettings.ColourScheme[2][0], UserSettings.ColourScheme[2][1], UserSettings.ColourScheme[2][2]);
+
+            ForeColourIndicator.BackColor = Color.FromArgb(userSettings.ColourScheme[0][0], userSettings.ColourScheme[0][1], userSettings.ColourScheme[0][2]);
+            MidColourIndicator.BackColor = Color.FromArgb(userSettings.ColourScheme[1][0], userSettings.ColourScheme[1][1], userSettings.ColourScheme[1][2]);
+            BackColourIndicator.BackColor = Color.FromArgb(userSettings.ColourScheme[2][0], userSettings.ColourScheme[2][1], userSettings.ColourScheme[2][2]);
         }
 
         private void mockTimeStamp()
@@ -49,5 +52,73 @@ namespace Chrono_Count_3.Forms
         private void combobox_DescLength_SelectionChangeCommitted(object sender, EventArgs e) { mockTimeStamp(); }
         private void combobox_TimeLength_SelectionChangeCommitted(object sender, EventArgs e) { mockTimeStamp(); }
         private void combobox_DateLength_SelectionChangeCommitted(object sender, EventArgs e) { mockTimeStamp(); }
+
+        private void SettingsForm_Load(object sender, EventArgs e)
+        {
+            ToggleEditing();
+        }
+
+        private void button_EditToggle_Click(object sender, EventArgs e)
+        {
+            ToggleEditing();
+        }
+
+        private void ToggleEditing()
+        {
+            if (groupbox_SettingsPage.Enabled)
+            {
+                button_EditToggle.Text = "Click to Edit Settings";
+                groupbox_SettingsPage.Enabled = false;
+
+                int lighten = 25;
+                int max = 255;
+                groupbox_SettingsPage.BackColor = Color.FromArgb(
+                    Math.Min(userSettings.ColourScheme[0][0] + lighten, max),
+                    Math.Min(userSettings.ColourScheme[0][1] + lighten, max),
+                    Math.Min(userSettings.ColourScheme[0][2] + lighten, max)
+                );
+            }
+            else
+            {
+                button_EditToggle.Text = "Click to Confirm";
+                groupbox_SettingsPage.Enabled = true;
+
+                groupbox_SettingsPage.BackColor = Color.FromArgb(
+                    userSettings.ColourScheme[0][0],
+                    userSettings.ColourScheme[0][1],
+                    userSettings.ColourScheme[0][2]
+                );
+            }
+        }
+
+        public void PickColor(TextBox textBox1, Panel textBox2)
+        {
+            using (ColorDialog colorDialog = new ColorDialog())
+            {
+                colorDialog.FullOpen = true;
+
+                if (colorDialog.ShowDialog() == DialogResult.OK)
+                {
+                    Color chosen = colorDialog.Color;
+
+                    textBox1.Text = $"{chosen.A},{chosen.G},{chosen.B}";
+                    textBox2.BackColor = chosen;
+                }
+            }
+        }
+        private void button_EditForeColour_Click(object sender, EventArgs e)
+        {
+            PickColor(textbox_ForeColour, ForeColourIndicator);
+        }
+
+        private void button_EditMidColour_Click(object sender, EventArgs e)
+        {
+            PickColor(textbox_MidColour, MidColourIndicator);
+        }
+
+        private void button_EditBackColour_Click(object sender, EventArgs e)
+        {
+            PickColor(textbox_BackColour, BackColourIndicator);
+        }
     }
 }
