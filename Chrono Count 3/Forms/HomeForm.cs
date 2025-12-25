@@ -1,6 +1,9 @@
 using Chrono_Count_3.CodeFiles.Settings;
+using Chrono_Count_3.CodeFiles.SizerTools;
 using Chrono_Count_3.CodeFiles.TimeStamp;
 using Chrono_Count_3.Forms;
+using Dyanmic_Form_Sizing_Testing;
+using System.Windows.Forms;
 
 namespace Chrono_Count_3
 {
@@ -8,12 +11,20 @@ namespace Chrono_Count_3
     {
         private readonly UserSettings userSettings;
         private readonly TimeStampHandler timeStampHandler;
+        private readonly DynamicControlResizer dynamicControlResizer;
+        private readonly ControlFontSizer listBoxFontSizer;
 
         public HomeForm(UserSettings userSettings, TimeStampHandler timeStampHandler)
         {
             InitializeComponent();
             this.userSettings = userSettings;
             this.timeStampHandler = timeStampHandler;
+            this.dynamicControlResizer = new DynamicControlResizer(this);
+            this.listBoxFontSizer = new ControlFontSizer(new Control[]
+            {
+                listbox_MainDisplay,
+                textbox_CurrentTime,
+            });
 
             //timeStampHandler.AddTimeStamp("New Year's Day", new DateTime(2025, 1, 1));
             //timeStampHandler.AddTimeStamp("Valentine's Day", new DateTime(2025, 2, 14));
@@ -42,6 +53,13 @@ namespace Chrono_Count_3
             //timeStampHandler.AddTimeStamp("Midsummer's Day", new DateTime(3025, 6, 24));
 
             timeStampHandler.DisplayItems(listbox_MainDisplay);
+            UpdateCurrentTimeDisplay();
+            listBoxFontSizer.AdjustFontSizes();
+        }
+
+        private void UpdateCurrentTimeDisplay() 
+        {
+            textbox_CurrentTime.Text = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
         }
 
         // Open Forms:
@@ -65,6 +83,13 @@ namespace Chrono_Count_3
         private void timer_GameTime_Tick(object sender, EventArgs e)
         {
             timeStampHandler.DisplayItems(listbox_MainDisplay);
+            UpdateCurrentTimeDisplay();
+        }
+
+        private void HomeForm_Resize(object sender, EventArgs e)
+        {
+            dynamicControlResizer.ResizeForm();
+            listBoxFontSizer.AdjustFontSizes();
         }
     }
 }
