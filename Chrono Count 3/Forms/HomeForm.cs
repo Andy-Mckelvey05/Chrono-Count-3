@@ -4,7 +4,6 @@ using Chrono_Count_3.CodeFiles.SizerTools;
 using Chrono_Count_3.CodeFiles.TimeStamp;
 using Chrono_Count_3.Forms;
 using Dyanmic_Form_Sizing_Testing;
-using System.Windows.Forms;
 
 namespace Chrono_Count_3
 {
@@ -88,7 +87,6 @@ namespace Chrono_Count_3
         {
             SettingsForm settingsForm = new SettingsForm(userSettings);
             ColourSetter colourSetter = new ColourSetter(userSettings, settingsForm);
-
             colourSetter.ApplyColours();
             settingsForm.ShowDialog();
         }

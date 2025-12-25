@@ -101,9 +101,9 @@ namespace Chrono_Count_3.Forms
                 int lighten = 25;
                 int max = 255;
                 groupbox_SettingsPage.BackColor = Color.FromArgb(
-                    Math.Min(userSettings.ColourScheme[0][0] + lighten, max),
-                    Math.Min(userSettings.ColourScheme[0][1] + lighten, max),
-                    Math.Min(userSettings.ColourScheme[0][2] + lighten, max)
+                    Math.Min(userSettings.ColourScheme[2][0] + lighten, max),
+                    Math.Min(userSettings.ColourScheme[2][1] + lighten, max),
+                    Math.Min(userSettings.ColourScheme[2][2] + lighten, max)
                 );
             }
             else
@@ -112,9 +112,9 @@ namespace Chrono_Count_3.Forms
                 groupbox_SettingsPage.Enabled = true;
 
                 groupbox_SettingsPage.BackColor = Color.FromArgb(
-                    userSettings.ColourScheme[0][0],
-                    userSettings.ColourScheme[0][1],
-                    userSettings.ColourScheme[0][2]
+                    userSettings.ColourScheme[2][0],
+                    userSettings.ColourScheme[2][1],
+                    userSettings.ColourScheme[2][2]
                 );
             }
         }

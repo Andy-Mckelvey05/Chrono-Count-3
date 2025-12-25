@@ -79,9 +79,9 @@ namespace Chrono_Count_3.CodeFiles.Settings
                 itemsPerPageDTO = 10,
                 colourSchemeDTO =
                 [
-                    [76, 116, 212],
                     [128, 128, 255],
-                    [160, 204, 250]
+                    [160, 204, 250],
+                    [76, 116, 212],
                 ],
                 defaultLengthDTO = 718,
                 descSizeDTO = LengthOptions.Medium,
@@ -98,9 +98,9 @@ namespace Chrono_Count_3.CodeFiles.Settings
                 itemsPerPageDTO = 10,
                 colourSchemeDTO =
                 [
-                    [76, 116, 212],
                     [128, 128, 255],
-                    [160, 204, 250]
+                    [160, 204, 250],
+                    [76, 116, 212],
                 ],
                 defaultLengthDTO = 718,
                 descSizeDTO = LengthOptions.Medium,
