@@ -70,6 +70,7 @@
             button_SetDefault.TabIndex = 2;
             button_SetDefault.Text = "Restore to Default Settings";
             button_SetDefault.UseVisualStyleBackColor = false;
+            button_SetDefault.Click += button_SetDefault_Click;
             // 
             // button_EditToggle
             // 
@@ -229,6 +230,7 @@
             textbox_MidColour.Location = new Point(92, 67);
             textbox_MidColour.Margin = new Padding(4, 3, 4, 3);
             textbox_MidColour.Name = "textbox_MidColour";
+            textbox_MidColour.ReadOnly = true;
             textbox_MidColour.Size = new Size(180, 36);
             textbox_MidColour.TabIndex = 28;
             textbox_MidColour.TabStop = false;
@@ -240,6 +242,7 @@
             textbox_ForeColour.Location = new Point(92, 25);
             textbox_ForeColour.Margin = new Padding(4, 3, 4, 3);
             textbox_ForeColour.Name = "textbox_ForeColour";
+            textbox_ForeColour.ReadOnly = true;
             textbox_ForeColour.Size = new Size(180, 36);
             textbox_ForeColour.TabIndex = 26;
             textbox_ForeColour.TabStop = false;
@@ -276,6 +279,7 @@
             textbox_BackColour.Location = new Point(92, 110);
             textbox_BackColour.Margin = new Padding(4, 3, 4, 3);
             textbox_BackColour.Name = "textbox_BackColour";
+            textbox_BackColour.ReadOnly = true;
             textbox_BackColour.Size = new Size(180, 36);
             textbox_BackColour.TabIndex = 27;
             textbox_BackColour.TabStop = false;
@@ -336,6 +340,7 @@
             textbox_ItemsPerPage.Font = new Font("Consolas", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
             textbox_ItemsPerPage.Location = new Point(170, 31);
             textbox_ItemsPerPage.Margin = new Padding(4, 3, 4, 3);
+            textbox_ItemsPerPage.MaxLength = 4;
             textbox_ItemsPerPage.Name = "textbox_ItemsPerPage";
             textbox_ItemsPerPage.Size = new Size(60, 36);
             textbox_ItemsPerPage.TabIndex = 3;

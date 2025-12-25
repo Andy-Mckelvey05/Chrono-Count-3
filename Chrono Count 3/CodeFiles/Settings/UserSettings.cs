@@ -1,5 +1,6 @@
 ﻿using Chrono_Count_3.CodeFiles.TimeStamp.TimeStampAssist.LengthOptionsContainer;
 using System.Text.Json;
+using static System.Windows.Forms.Design.AxImporter;
 
 namespace Chrono_Count_3.CodeFiles.Settings
 {
@@ -11,9 +12,11 @@ namespace Chrono_Count_3.CodeFiles.Settings
         private LengthOptions descSize;
         private LengthOptions dateSize;
         private LengthOptions timeSize;
+        private string settingsPath;
 
         public UserSettings(string settingsPath) 
         {
+            this.settingsPath = settingsPath;
             ReadSettingsJSON(settingsPath);
         }
 
@@ -45,12 +48,17 @@ namespace Chrono_Count_3.CodeFiles.Settings
                 ReadSettingsJSON(settingsPath);
             }
         }
-        public void WriteSettingsJSON(string settingsPath)
+        public void WriteSettingsJSON(UserSettingDto x)
         {
+            string json = JsonSerializer.Serialize(x);
             using (StreamWriter writeSettings = new(settingsPath))
             {
-                writeSettings.WriteLine(GetSettingsJSON());
+                writeSettings.WriteLine(json);
             }
+
+            string exePath = Application.ExecutablePath;
+            System.Diagnostics.Process.Start(exePath);
+            Application.Exit();
         }
 
         private void SetSettingsJSON(string JSON)
@@ -63,19 +71,6 @@ namespace Chrono_Count_3.CodeFiles.Settings
             descSize = settings.descSizeDTO;
             dateSize = settings.dateSizeDTO;
             timeSize = settings.timeSizeDTO;
-        }
-        private string GetSettingsJSON() 
-        {
-            UserSettingDto settings = new UserSettingDto
-            {
-                itemsPerPageDTO = itemsPerPage,
-                colourSchemeDTO = colourScheme,
-                defaultLengthDTO = defaultLength,
-                descSizeDTO = descSize,
-                dateSizeDTO = dateSize,
-                timeSizeDTO = timeSize
-            };
-            return JsonSerializer.Serialize(settings);
         }
         private string GetDefaultJSON()
         {
@@ -94,6 +89,25 @@ namespace Chrono_Count_3.CodeFiles.Settings
                 timeSizeDTO = LengthOptions.Medium
             };
             return JsonSerializer.Serialize(settings);
+        }
+
+        public UserSettingDto GetDefaultSettings()
+        {
+            UserSettingDto settings = new UserSettingDto
+            {
+                itemsPerPageDTO = 10,
+                colourSchemeDTO =
+                [
+                    [76, 116, 212],
+                    [128, 128, 255],
+                    [160, 204, 250]
+                ],
+                defaultLengthDTO = 718,
+                descSizeDTO = LengthOptions.Medium,
+                dateSizeDTO = LengthOptions.Medium,
+                timeSizeDTO = LengthOptions.Medium
+            };
+            return settings;
         }
     }
 }

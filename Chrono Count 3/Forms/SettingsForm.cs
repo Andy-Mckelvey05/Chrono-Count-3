@@ -57,10 +57,13 @@ namespace Chrono_Count_3.Forms
         {
             ToggleEditing();
         }
-
         private void button_EditToggle_Click(object sender, EventArgs e)
         {
             ToggleEditing();
+            if (!groupbox_SettingsPage.Enabled && ValidChoises())
+            {
+                ConfirmChoises();
+            }
         }
 
         private void ToggleEditing()
@@ -91,7 +94,35 @@ namespace Chrono_Count_3.Forms
             }
         }
 
-        public void PickColor(TextBox textBox1, Panel textBox2)
+        private bool ValidChoises()
+        {
+            return true;
+        }
+
+        private void ConfirmChoises()
+        {
+            UserSettingDto choises = new UserSettingDto
+            {
+                itemsPerPageDTO = int.Parse(textbox_ItemsPerPage.Text),
+                colourSchemeDTO =
+                [
+                    textbox_ForeColour.Text.Split(',').Select(int.Parse).ToArray(),
+                    textbox_MidColour.Text.Split(',').Select(int.Parse).ToArray(),
+                    textbox_BackColour.Text.Split(',').Select(int.Parse).ToArray()
+                ],
+                defaultLengthDTO = 718, // ! May Remove later, currently not implemented
+                descSizeDTO = (LengthOptions)Enum.Parse(typeof(LengthOptions), combobox_DescLength.SelectedItem.ToString()!),
+                dateSizeDTO = (LengthOptions)Enum.Parse(typeof(LengthOptions), combobox_DateLength.SelectedItem.ToString()!),
+                timeSizeDTO = (LengthOptions)Enum.Parse(typeof(LengthOptions), combobox_TimeLength.SelectedItem.ToString()!)
+            };
+
+            if (MessageBox.Show("Are you sure? This will close the program.", "Confirm Exit", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            {
+                userSettings.WriteSettingsJSON(choises);
+            }
+        }
+
+        public static void PickColor(TextBox textBox1, Panel textBox2)
         {
             using (ColorDialog colorDialog = new ColorDialog())
             {
@@ -110,15 +141,22 @@ namespace Chrono_Count_3.Forms
         {
             PickColor(textbox_ForeColour, ForeColourIndicator);
         }
-
         private void button_EditMidColour_Click(object sender, EventArgs e)
         {
             PickColor(textbox_MidColour, MidColourIndicator);
         }
-
         private void button_EditBackColour_Click(object sender, EventArgs e)
         {
             PickColor(textbox_BackColour, BackColourIndicator);
+        }
+
+        private void button_SetDefault_Click(object sender, EventArgs e)
+        {
+            UserSettingDto choises = userSettings.GetDefaultSettings();
+            if (MessageBox.Show("Are you sure? This will close the program.", "Confirm Exit", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            {
+                userSettings.WriteSettingsJSON(choises);
+            }
         }
     }
 }

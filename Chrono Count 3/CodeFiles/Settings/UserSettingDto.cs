@@ -2,7 +2,7 @@
 
 namespace Chrono_Count_3.CodeFiles.Settings
 {
-    internal class UserSettingDto
+    public class UserSettingDto
     {
         public int itemsPerPageDTO { get; set; }
         public required int[][] colourSchemeDTO { get; set; }
