@@ -38,9 +38,6 @@
             combobox_DateLength = new ComboBox();
             combobox_TimeLength = new ComboBox();
             groupbox_Colours = new GroupBox();
-            BackColourIndicator = new Panel();
-            MidColourIndicator = new Panel();
-            ForeColourIndicator = new Panel();
             label_ForeColour = new Label();
             textbox_MidColour = new TextBox();
             textbox_ForeColour = new TextBox();
@@ -52,6 +49,9 @@
             button_EditMidColour = new Button();
             label_ItemsPerPage = new Label();
             textbox_ItemsPerPage = new TextBox();
+            BackColourIndicator = new Panel();
+            MidColourIndicator = new Panel();
+            ForeColourIndicator = new Panel();
             groupbox_SettingsPage.SuspendLayout();
             groupbox_Display.SuspendLayout();
             groupbox_Colours.SuspendLayout();
@@ -187,30 +187,6 @@
             groupbox_Colours.TabStop = false;
             groupbox_Colours.Text = "Colours";
             // 
-            // BackColourIndicator
-            // 
-            BackColourIndicator.BorderStyle = BorderStyle.FixedSingle;
-            BackColourIndicator.Location = new Point(278, 111);
-            BackColourIndicator.Name = "BackColourIndicator";
-            BackColourIndicator.Size = new Size(90, 33);
-            BackColourIndicator.TabIndex = 31;
-            // 
-            // MidColourIndicator
-            // 
-            MidColourIndicator.BorderStyle = BorderStyle.FixedSingle;
-            MidColourIndicator.Location = new Point(278, 67);
-            MidColourIndicator.Name = "MidColourIndicator";
-            MidColourIndicator.Size = new Size(90, 33);
-            MidColourIndicator.TabIndex = 30;
-            // 
-            // ForeColourIndicator
-            // 
-            ForeColourIndicator.BorderStyle = BorderStyle.FixedSingle;
-            ForeColourIndicator.Location = new Point(278, 28);
-            ForeColourIndicator.Name = "ForeColourIndicator";
-            ForeColourIndicator.Size = new Size(90, 33);
-            ForeColourIndicator.TabIndex = 29;
-            // 
             // label_ForeColour
             // 
             label_ForeColour.AutoSize = true;
@@ -344,6 +320,30 @@
             textbox_ItemsPerPage.Name = "textbox_ItemsPerPage";
             textbox_ItemsPerPage.Size = new Size(60, 36);
             textbox_ItemsPerPage.TabIndex = 3;
+            // 
+            // BackColourIndicator
+            // 
+            BackColourIndicator.BorderStyle = BorderStyle.FixedSingle;
+            BackColourIndicator.Location = new Point(278, 111);
+            BackColourIndicator.Name = "BackColourIndicator";
+            BackColourIndicator.Size = new Size(90, 33);
+            BackColourIndicator.TabIndex = 31;
+            // 
+            // MidColourIndicator
+            // 
+            MidColourIndicator.BorderStyle = BorderStyle.FixedSingle;
+            MidColourIndicator.Location = new Point(278, 67);
+            MidColourIndicator.Name = "MidColourIndicator";
+            MidColourIndicator.Size = new Size(90, 33);
+            MidColourIndicator.TabIndex = 30;
+            // 
+            // ForeColourIndicator
+            // 
+            ForeColourIndicator.BorderStyle = BorderStyle.FixedSingle;
+            ForeColourIndicator.Location = new Point(278, 28);
+            ForeColourIndicator.Name = "ForeColourIndicator";
+            ForeColourIndicator.Size = new Size(90, 33);
+            ForeColourIndicator.TabIndex = 29;
             // 
             // SettingsForm
             // 

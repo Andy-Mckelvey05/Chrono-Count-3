@@ -7,6 +7,7 @@ namespace Chrono_Count_3.Forms
     public partial class SettingsForm : Form
     {
         private UserSettings userSettings;
+
         public SettingsForm(UserSettings userSettings)
         {
             InitializeComponent();
@@ -30,9 +31,32 @@ namespace Chrono_Count_3.Forms
 
             mockTimeStamp();
 
-            ForeColourIndicator.BackColor = Color.FromArgb(userSettings.ColourScheme[0][0], userSettings.ColourScheme[0][1], userSettings.ColourScheme[0][2]);
-            MidColourIndicator.BackColor = Color.FromArgb(userSettings.ColourScheme[1][0], userSettings.ColourScheme[1][1], userSettings.ColourScheme[1][2]);
-            BackColourIndicator.BackColor = Color.FromArgb(userSettings.ColourScheme[2][0], userSettings.ColourScheme[2][1], userSettings.ColourScheme[2][2]);
+            ApplyTextboxIndicatorColours();
+        }
+
+        private void ApplyTextboxIndicatorColours()
+        {
+            ForeColourIndicator.BackColor = Color.FromArgb(
+                userSettings.ColourScheme[0][0],
+                userSettings.ColourScheme[0][1],
+                userSettings.ColourScheme[0][2]
+            );
+
+            MidColourIndicator.BackColor = Color.FromArgb(
+                userSettings.ColourScheme[1][0],
+                userSettings.ColourScheme[1][1],
+                userSettings.ColourScheme[1][2]
+            );
+
+            BackColourIndicator.BackColor = Color.FromArgb(
+                userSettings.ColourScheme[2][0],
+                userSettings.ColourScheme[2][1],
+                userSettings.ColourScheme[2][2]
+            );
+
+            textbox_ForeColour.BackColor = ForeColourIndicator.BackColor;
+            textbox_MidColour.BackColor = MidColourIndicator.BackColor;
+            textbox_BackColour.BackColor = BackColourIndicator.BackColor;
         }
 
         private void mockTimeStamp()
@@ -56,6 +80,7 @@ namespace Chrono_Count_3.Forms
         private void SettingsForm_Load(object sender, EventArgs e)
         {
             ToggleEditing();
+            ApplyTextboxIndicatorColours();
         }
         private void button_EditToggle_Click(object sender, EventArgs e)
         {
@@ -132,7 +157,7 @@ namespace Chrono_Count_3.Forms
                 {
                     Color chosen = colorDialog.Color;
 
-                    textBox1.Text = $"{chosen.A},{chosen.G},{chosen.B}";
+                    textBox1.Text = $"{chosen.R},{chosen.G},{chosen.B}";
                     textBox2.BackColor = chosen;
                 }
             }

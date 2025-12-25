@@ -1,3 +1,4 @@
+
 using Chrono_Count_3.CodeFiles.Settings;
 using Chrono_Count_3.CodeFiles.SizerTools;
 using Chrono_Count_3.CodeFiles.TimeStamp;
@@ -11,20 +12,24 @@ namespace Chrono_Count_3
     {
         private readonly UserSettings userSettings;
         private readonly TimeStampHandler timeStampHandler;
+
         private readonly DynamicControlResizer dynamicControlResizer;
         private readonly ControlFontSizer listBoxFontSizer;
+        private readonly ColourSetter colourSetter;
 
         public HomeForm(UserSettings userSettings, TimeStampHandler timeStampHandler)
         {
             InitializeComponent();
             this.userSettings = userSettings;
             this.timeStampHandler = timeStampHandler;
+
             this.dynamicControlResizer = new DynamicControlResizer(this);
-            this.listBoxFontSizer = new ControlFontSizer(new Control[]
-            {
+            this.listBoxFontSizer = new ControlFontSizer(
+            [
                 listbox_MainDisplay,
                 textbox_CurrentTime,
-            });
+            ]);
+            this.colourSetter = new ColourSetter(userSettings, this);
 
             //timeStampHandler.AddTimeStamp("New Year's Day", new DateTime(2025, 1, 1));
             //timeStampHandler.AddTimeStamp("Valentine's Day", new DateTime(2025, 2, 14));
@@ -55,6 +60,7 @@ namespace Chrono_Count_3
             timeStampHandler.DisplayItems(listbox_MainDisplay);
             UpdateCurrentTimeDisplay();
             listBoxFontSizer.AdjustFontSizes();
+            colourSetter.ApplyColours();
         }
 
         private void UpdateCurrentTimeDisplay() 
@@ -66,17 +72,24 @@ namespace Chrono_Count_3
         private void button_OpenCreateForm_Click(object sender, EventArgs e)
         {
             CreateForm createForm = new CreateForm();
+            ColourSetter colourSetter = new ColourSetter(userSettings, createForm);
+            colourSetter.ApplyColours();
             createForm.ShowDialog();
             //timeStampHandler.UpdateFile();
         }
         private void button_OpenRemoveForm_Click(object sender, EventArgs e)
         {
             RemoveForm removeForm = new RemoveForm();
+            ColourSetter colourSetter = new ColourSetter(userSettings, removeForm);
+            colourSetter.ApplyColours();
             removeForm.ShowDialog();
         }
         private void button_OpenSettingsForm_Click(object sender, EventArgs e)
         {
             SettingsForm settingsForm = new SettingsForm(userSettings);
+            ColourSetter colourSetter = new ColourSetter(userSettings, settingsForm);
+
+            colourSetter.ApplyColours();
             settingsForm.ShowDialog();
         }
 
