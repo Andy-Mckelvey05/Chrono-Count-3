@@ -114,6 +114,7 @@
             button_CreateItem.TabIndex = 4;
             button_CreateItem.Text = "Create";
             button_CreateItem.UseVisualStyleBackColor = false;
+            button_CreateItem.Click += button_CreateItem_Click;
             // 
             // CreateForm
             // 

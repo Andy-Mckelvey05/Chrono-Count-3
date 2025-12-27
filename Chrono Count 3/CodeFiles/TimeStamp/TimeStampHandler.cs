@@ -68,7 +68,6 @@ namespace Chrono_Count_3.CodeFiles.TimeStamp
 
         public void UpdateFile()
         {
-            // Overwrite file
             using (var writer = new StreamWriter(filePath, false))
             {
                 foreach (var item in itemList)

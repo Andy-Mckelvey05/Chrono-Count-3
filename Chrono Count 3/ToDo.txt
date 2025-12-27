@@ -1,0 +1,9 @@
+﻿My ToDo List:
+
+	Input Validation For:
+		- Create Form
+		- Settings Form
+		- Remove Form
+		- Home Form
+
+	- Add page support and display validation on home screen
