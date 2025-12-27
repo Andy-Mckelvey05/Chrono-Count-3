@@ -33,11 +33,14 @@
             button_EditToggle = new Button();
             groupbox_SettingsPage = new GroupBox();
             groupbox_Display = new GroupBox();
+            textBox_ExampleTimeStamp = new TextBox();
             combobox_DescLength = new ComboBox();
-            label_ExampleTimeStamp = new Label();
             combobox_DateLength = new ComboBox();
             combobox_TimeLength = new ComboBox();
             groupbox_Colours = new GroupBox();
+            BackColourIndicator = new Panel();
+            MidColourIndicator = new Panel();
+            ForeColourIndicator = new Panel();
             label_ForeColour = new Label();
             textbox_MidColour = new TextBox();
             textbox_ForeColour = new TextBox();
@@ -49,9 +52,6 @@
             button_EditMidColour = new Button();
             label_ItemsPerPage = new Label();
             textbox_ItemsPerPage = new TextBox();
-            BackColourIndicator = new Panel();
-            MidColourIndicator = new Panel();
-            ForeColourIndicator = new Panel();
             groupbox_SettingsPage.SuspendLayout();
             groupbox_Display.SuspendLayout();
             groupbox_Colours.SuspendLayout();
@@ -105,8 +105,8 @@
             // 
             // groupbox_Display
             // 
+            groupbox_Display.Controls.Add(textBox_ExampleTimeStamp);
             groupbox_Display.Controls.Add(combobox_DescLength);
-            groupbox_Display.Controls.Add(label_ExampleTimeStamp);
             groupbox_Display.Controls.Add(combobox_DateLength);
             groupbox_Display.Controls.Add(combobox_TimeLength);
             groupbox_Display.Location = new Point(7, 73);
@@ -115,6 +115,22 @@
             groupbox_Display.TabIndex = 35;
             groupbox_Display.TabStop = false;
             groupbox_Display.Text = "Item Display";
+            // 
+            // textBox_ExampleTimeStamp
+            // 
+            textBox_ExampleTimeStamp.AcceptsReturn = true;
+            textBox_ExampleTimeStamp.BackColor = Color.FromArgb(160, 204, 250);
+            textBox_ExampleTimeStamp.BorderStyle = BorderStyle.None;
+            textBox_ExampleTimeStamp.Font = new Font("Consolas", 14.25F);
+            textBox_ExampleTimeStamp.Location = new Point(6, 69);
+            textBox_ExampleTimeStamp.Margin = new Padding(4, 3, 4, 3);
+            textBox_ExampleTimeStamp.Multiline = true;
+            textBox_ExampleTimeStamp.Name = "textBox_ExampleTimeStamp";
+            textBox_ExampleTimeStamp.ReadOnly = true;
+            textBox_ExampleTimeStamp.Size = new Size(462, 68);
+            textBox_ExampleTimeStamp.TabIndex = 32;
+            textBox_ExampleTimeStamp.TabStop = false;
+            textBox_ExampleTimeStamp.Text = "---------------------------------------------\r\n---------------------------------------------\r\n---------------------------------------------\r\n";
             // 
             // combobox_DescLength
             // 
@@ -128,17 +144,6 @@
             combobox_DescLength.Size = new Size(150, 32);
             combobox_DescLength.TabIndex = 4;
             combobox_DescLength.SelectionChangeCommitted += combobox_DescLength_SelectionChangeCommitted;
-            // 
-            // label_ExampleTimeStamp
-            // 
-            label_ExampleTimeStamp.BackColor = Color.FromArgb(160, 204, 250);
-            label_ExampleTimeStamp.BorderStyle = BorderStyle.FixedSingle;
-            label_ExampleTimeStamp.Font = new Font("Consolas", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label_ExampleTimeStamp.Location = new Point(6, 66);
-            label_ExampleTimeStamp.Name = "label_ExampleTimeStamp";
-            label_ExampleTimeStamp.Size = new Size(462, 68);
-            label_ExampleTimeStamp.TabIndex = 34;
-            label_ExampleTimeStamp.Text = "---------------------------------------------\r\n---------------------------------------------\r\n---------------------------------------------";
             // 
             // combobox_DateLength
             // 
@@ -186,6 +191,30 @@
             groupbox_Colours.TabIndex = 10;
             groupbox_Colours.TabStop = false;
             groupbox_Colours.Text = "Colours";
+            // 
+            // BackColourIndicator
+            // 
+            BackColourIndicator.BorderStyle = BorderStyle.FixedSingle;
+            BackColourIndicator.Location = new Point(278, 111);
+            BackColourIndicator.Name = "BackColourIndicator";
+            BackColourIndicator.Size = new Size(90, 33);
+            BackColourIndicator.TabIndex = 31;
+            // 
+            // MidColourIndicator
+            // 
+            MidColourIndicator.BorderStyle = BorderStyle.FixedSingle;
+            MidColourIndicator.Location = new Point(278, 67);
+            MidColourIndicator.Name = "MidColourIndicator";
+            MidColourIndicator.Size = new Size(90, 33);
+            MidColourIndicator.TabIndex = 30;
+            // 
+            // ForeColourIndicator
+            // 
+            ForeColourIndicator.BorderStyle = BorderStyle.FixedSingle;
+            ForeColourIndicator.Location = new Point(278, 28);
+            ForeColourIndicator.Name = "ForeColourIndicator";
+            ForeColourIndicator.Size = new Size(90, 33);
+            ForeColourIndicator.TabIndex = 29;
             // 
             // label_ForeColour
             // 
@@ -321,34 +350,11 @@
             textbox_ItemsPerPage.Size = new Size(60, 36);
             textbox_ItemsPerPage.TabIndex = 3;
             // 
-            // BackColourIndicator
-            // 
-            BackColourIndicator.BorderStyle = BorderStyle.FixedSingle;
-            BackColourIndicator.Location = new Point(278, 111);
-            BackColourIndicator.Name = "BackColourIndicator";
-            BackColourIndicator.Size = new Size(90, 33);
-            BackColourIndicator.TabIndex = 31;
-            // 
-            // MidColourIndicator
-            // 
-            MidColourIndicator.BorderStyle = BorderStyle.FixedSingle;
-            MidColourIndicator.Location = new Point(278, 67);
-            MidColourIndicator.Name = "MidColourIndicator";
-            MidColourIndicator.Size = new Size(90, 33);
-            MidColourIndicator.TabIndex = 30;
-            // 
-            // ForeColourIndicator
-            // 
-            ForeColourIndicator.BorderStyle = BorderStyle.FixedSingle;
-            ForeColourIndicator.Location = new Point(278, 28);
-            ForeColourIndicator.Name = "ForeColourIndicator";
-            ForeColourIndicator.Size = new Size(90, 33);
-            ForeColourIndicator.TabIndex = 29;
-            // 
             // SettingsForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            AutoSize = true;
             BackColor = Color.FromArgb(76, 116, 212);
             ClientSize = new Size(523, 522);
             Controls.Add(groupbox_SettingsPage);
@@ -365,6 +371,7 @@
             groupbox_SettingsPage.ResumeLayout(false);
             groupbox_SettingsPage.PerformLayout();
             groupbox_Display.ResumeLayout(false);
+            groupbox_Display.PerformLayout();
             groupbox_Colours.ResumeLayout(false);
             groupbox_Colours.PerformLayout();
             ResumeLayout(false);
@@ -395,5 +402,6 @@
         private Panel BackColourIndicator;
         private Panel MidColourIndicator;
         private Panel ForeColourIndicator;
+        private TextBox textBox_ExampleTimeStamp;
     }
 }

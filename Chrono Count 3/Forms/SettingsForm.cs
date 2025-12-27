@@ -53,10 +53,6 @@ namespace Chrono_Count_3.Forms
                 userSettings.ColourScheme[2][1],
                 userSettings.ColourScheme[2][2]
             );
-
-            textbox_ForeColour.BackColor = ForeColourIndicator.BackColor;
-            textbox_MidColour.BackColor = MidColourIndicator.BackColor;
-            textbox_BackColour.BackColor = BackColourIndicator.BackColor;
         }
 
         private void mockTimeStamp()
@@ -65,7 +61,7 @@ namespace Chrono_Count_3.Forms
             string dateOption = combobox_DateLength.SelectedItem!.ToString()!;
             string timeOption = combobox_TimeLength.SelectedItem!.ToString()!;
 
-            label_ExampleTimeStamp.Text = TimeStampHandler.CreateDummyTimeStampString(
+            textBox_ExampleTimeStamp.Text = TimeStampHandler.CreateDummyTimeStampString(
                 "This is an example of a description that you may use",
                 DateTime.Now.AddDays(7),
                 descOption,

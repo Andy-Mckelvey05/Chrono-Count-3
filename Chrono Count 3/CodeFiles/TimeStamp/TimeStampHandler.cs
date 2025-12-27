@@ -85,7 +85,7 @@ namespace Chrono_Count_3.CodeFiles.TimeStamp
             LengthOptions timeOption = Enum.Parse<LengthOptions>(timeOptionStr);
 
             var ts = new TimeStamp(label, date, descOption, dateOption, timeOption, false);
-            return $"{ts.GetDesc()}\n{ts.GetDate()}\n{ts.GetTime()}";
+            return $"{ts.GetDesc()}\r\n{ts.GetDate()}\r\n{ts.GetTime()}";
         }
     }
 }
