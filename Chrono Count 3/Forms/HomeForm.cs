@@ -78,9 +78,10 @@ namespace Chrono_Count_3
         }
         private void button_OpenRemoveForm_Click(object sender, EventArgs e)
         {
-            RemoveForm removeForm = new RemoveForm();
+            RemoveForm removeForm = new RemoveForm(timeStampHandler);
             new ColourSetter(userSettings, removeForm).ApplyColours();
             removeForm.ShowDialog();
+            //timeStampHandler.UpdateFile();
             RefreshForm();
         }
         private void button_OpenSettingsForm_Click(object sender, EventArgs e)

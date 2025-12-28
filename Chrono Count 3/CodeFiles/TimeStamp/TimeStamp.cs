@@ -91,5 +91,16 @@ namespace Chrono_Count_3.CodeFiles.TimeStamp
 
             return desc + date + time;
         }
+
+        public string ToSimpleString()
+        {
+            int padding = 32;
+            string paddedLabel = name.Length > padding ? $"{name[..(padding - 3)]}..." : name.PadRight(padding);
+
+            var dateItemMedium = DisplayTypeFactory.Create(LengthOptions.Short, name, date);
+            string dateStr = dateItemMedium.GetFormatDate();
+
+            return paddedLabel + dateStr;
+        }
     }
 }

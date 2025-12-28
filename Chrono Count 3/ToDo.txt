@@ -5,3 +5,7 @@
 		- Settings Form
 		- Remove Form
 		- Home Form
+
+
+Bugs To Fix:
+	When Items Arnt Always The Same Size It Displays Weirdly

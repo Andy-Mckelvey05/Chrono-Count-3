@@ -29,65 +29,68 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RemoveForm));
-            GBremove = new GroupBox();
-            RemoveBTN = new Button();
-            DataDropDown = new ComboBox();
-            PageDropDown = new ComboBox();
-            GBremove.SuspendLayout();
+            groupbox_remove = new GroupBox();
+            button_Remove = new Button();
+            combobox_ItemDropDown = new ComboBox();
+            comboBox_PageDropDown = new ComboBox();
+            groupbox_remove.SuspendLayout();
             SuspendLayout();
             // 
-            // GBremove
+            // groupbox_remove
             // 
-            GBremove.Controls.Add(RemoveBTN);
-            GBremove.Controls.Add(DataDropDown);
-            GBremove.Controls.Add(PageDropDown);
-            GBremove.Font = new Font("Consolas", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            GBremove.Location = new Point(15, 15);
-            GBremove.Margin = new Padding(6);
-            GBremove.Name = "GBremove";
-            GBremove.Padding = new Padding(6);
-            GBremove.Size = new Size(623, 143);
-            GBremove.TabIndex = 11;
-            GBremove.TabStop = false;
-            GBremove.Text = "Remove";
+            groupbox_remove.Controls.Add(button_Remove);
+            groupbox_remove.Controls.Add(combobox_ItemDropDown);
+            groupbox_remove.Controls.Add(comboBox_PageDropDown);
+            groupbox_remove.Font = new Font("Consolas", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            groupbox_remove.Location = new Point(15, 15);
+            groupbox_remove.Margin = new Padding(6);
+            groupbox_remove.Name = "groupbox_remove";
+            groupbox_remove.Padding = new Padding(6);
+            groupbox_remove.Size = new Size(623, 143);
+            groupbox_remove.TabIndex = 11;
+            groupbox_remove.TabStop = false;
+            groupbox_remove.Text = "Remove";
             // 
-            // RemoveBTN
+            // button_Remove
             // 
-            RemoveBTN.BackColor = Color.FromArgb(128, 128, 255);
-            RemoveBTN.FlatAppearance.BorderColor = Color.White;
-            RemoveBTN.FlatStyle = FlatStyle.Flat;
-            RemoveBTN.Font = new Font("Consolas", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            RemoveBTN.Location = new Point(7, 72);
-            RemoveBTN.Margin = new Padding(4, 3, 4, 3);
-            RemoveBTN.Name = "RemoveBTN";
-            RemoveBTN.Size = new Size(607, 54);
-            RemoveBTN.TabIndex = 2;
-            RemoveBTN.Text = "Remove";
-            RemoveBTN.UseVisualStyleBackColor = false;
+            button_Remove.BackColor = Color.FromArgb(128, 128, 255);
+            button_Remove.FlatAppearance.BorderColor = Color.White;
+            button_Remove.FlatStyle = FlatStyle.Flat;
+            button_Remove.Font = new Font("Consolas", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button_Remove.Location = new Point(7, 72);
+            button_Remove.Margin = new Padding(4, 3, 4, 3);
+            button_Remove.Name = "button_Remove";
+            button_Remove.Size = new Size(607, 54);
+            button_Remove.TabIndex = 2;
+            button_Remove.Text = "Remove";
+            button_Remove.UseVisualStyleBackColor = false;
+            button_Remove.Click += button_Remove_Click;
             // 
-            // DataDropDown
+            // combobox_ItemDropDown
             // 
-            DataDropDown.BackColor = Color.FromArgb(160, 204, 250);
-            DataDropDown.DropDownStyle = ComboBoxStyle.DropDownList;
-            DataDropDown.FlatStyle = FlatStyle.Flat;
-            DataDropDown.FormattingEnabled = true;
-            DataDropDown.Location = new Point(87, 34);
-            DataDropDown.Margin = new Padding(4, 3, 4, 3);
-            DataDropDown.Name = "DataDropDown";
-            DataDropDown.Size = new Size(527, 32);
-            DataDropDown.TabIndex = 1;
+            combobox_ItemDropDown.BackColor = Color.FromArgb(160, 204, 250);
+            combobox_ItemDropDown.DropDownStyle = ComboBoxStyle.DropDownList;
+            combobox_ItemDropDown.FlatStyle = FlatStyle.Flat;
+            combobox_ItemDropDown.FormattingEnabled = true;
+            combobox_ItemDropDown.Location = new Point(87, 34);
+            combobox_ItemDropDown.Margin = new Padding(4, 3, 4, 3);
+            combobox_ItemDropDown.Name = "combobox_ItemDropDown";
+            combobox_ItemDropDown.Size = new Size(527, 32);
+            combobox_ItemDropDown.TabIndex = 1;
             // 
-            // PageDropDown
+            // comboBox_PageDropDown
             // 
-            PageDropDown.BackColor = Color.FromArgb(160, 204, 250);
-            PageDropDown.DropDownStyle = ComboBoxStyle.DropDownList;
-            PageDropDown.FlatStyle = FlatStyle.Flat;
-            PageDropDown.FormattingEnabled = true;
-            PageDropDown.Location = new Point(7, 34);
-            PageDropDown.Margin = new Padding(4, 3, 4, 3);
-            PageDropDown.Name = "PageDropDown";
-            PageDropDown.Size = new Size(72, 32);
-            PageDropDown.TabIndex = 0;
+            comboBox_PageDropDown.BackColor = Color.FromArgb(160, 204, 250);
+            comboBox_PageDropDown.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox_PageDropDown.FlatStyle = FlatStyle.Flat;
+            comboBox_PageDropDown.FormattingEnabled = true;
+            comboBox_PageDropDown.Location = new Point(7, 34);
+            comboBox_PageDropDown.Margin = new Padding(4, 3, 4, 3);
+            comboBox_PageDropDown.Name = "comboBox_PageDropDown";
+            comboBox_PageDropDown.Size = new Size(72, 32);
+            comboBox_PageDropDown.TabIndex = 0;
+            comboBox_PageDropDown.TabStop = false;
+            comboBox_PageDropDown.SelectedIndexChanged += comboBox_PageDropDown_SelectedIndexChanged;
             // 
             // RemoveForm
             // 
@@ -95,7 +98,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(76, 116, 212);
             ClientSize = new Size(654, 173);
-            Controls.Add(GBremove);
+            Controls.Add(groupbox_remove);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
@@ -103,15 +106,15 @@
             Name = "RemoveForm";
             StartPosition = FormStartPosition.CenterParent;
             Text = "Remove Item";
-            GBremove.ResumeLayout(false);
+            groupbox_remove.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
 
-        internal GroupBox GBremove;
-        private Button RemoveBTN;
-        private ComboBox DataDropDown;
-        private ComboBox PageDropDown;
+        internal GroupBox groupbox_remove;
+        private Button button_Remove;
+        private ComboBox combobox_ItemDropDown;
+        private ComboBox comboBox_PageDropDown;
     }
 }

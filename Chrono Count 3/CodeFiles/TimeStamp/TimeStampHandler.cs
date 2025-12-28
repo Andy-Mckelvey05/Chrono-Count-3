@@ -31,6 +31,13 @@ namespace Chrono_Count_3.CodeFiles.TimeStamp
             itemList.Sort();
         }
 
+        public void RemoveTimeStamp(int index)
+        {
+            MessageBox.Show(itemList[index].ToString());
+            itemList.Remove(itemList[index]);
+            itemList.Sort();
+        }
+
         private List<TimeStamp> GetPage(int pageIndex)
         {
             int totalPages = GetTotalPages();
@@ -57,6 +64,11 @@ namespace Chrono_Count_3.CodeFiles.TimeStamp
             return (int)Math.Ceiling(itemList.Count / (double)pageSize);
         }
 
+        public int GetItemsPerPage()
+        {
+            return userSettings.ItemsPerPage;
+        }
+
         public void DisplayPage(ListBox listbox, int pageIndex) 
         {
             listbox.Items.Clear();
@@ -72,6 +84,23 @@ namespace Chrono_Count_3.CodeFiles.TimeStamp
             foreach (var item in itemList)
             {
                 listbox.Items.Add(item.ToString());
+            }
+        }
+
+        public void DisplayPageShort(ComboBox comboBox, int pageIndex)
+        {
+            comboBox.Items.Clear();
+            foreach (var item in GetPage(pageIndex))
+            {
+                comboBox.Items.Add(item.ToSimpleString());
+            }
+        }
+        public void DisplayAllShort(ComboBox comboBox)
+        {
+            comboBox.Items.Clear();
+            foreach (var item in itemList)
+            {
+                comboBox.Items.Add(item.ToSimpleString());
             }
         }
 
