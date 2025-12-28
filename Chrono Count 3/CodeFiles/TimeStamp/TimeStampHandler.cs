@@ -1,5 +1,6 @@
 ﻿using Chrono_Count_3.CodeFiles.Settings;
 using Chrono_Count_3.CodeFiles.TimeStamp.TimeStampAssist.LengthOptionsContainer;
+using System.Drawing.Printing;
 using System.Globalization;
 
 namespace Chrono_Count_3.CodeFiles.TimeStamp
@@ -30,7 +31,42 @@ namespace Chrono_Count_3.CodeFiles.TimeStamp
             itemList.Sort();
         }
 
-        public void DisplayItems(ListBox listbox) 
+        private List<TimeStamp> GetPage(int pageIndex)
+        {
+            int totalPages = GetTotalPages();
+            if (totalPages == 0) 
+            {
+                return new List<TimeStamp>();
+            }
+
+            pageIndex = Math.Max(1, Math.Min(pageIndex, totalPages));
+
+            int pageSize = userSettings.ItemsPerPage;
+            int startIndex = (pageIndex - 1) * pageSize;
+
+            return itemList.Skip(startIndex).Take(pageSize).ToList();
+        }
+
+        public int GetTotalPages()
+        {
+            if (itemList.Count == 0) 
+            {
+                return 1;
+            }
+            int pageSize = userSettings.ItemsPerPage;
+            return (int)Math.Ceiling(itemList.Count / (double)pageSize);
+        }
+
+        public void DisplayPage(ListBox listbox, int pageIndex) 
+        {
+            listbox.Items.Clear();
+            foreach (var item in GetPage(pageIndex))
+            {
+                listbox.Items.Add(item.ToString());
+            }
+        }
+
+        public void DisplayAllItems(ListBox listbox)
         {
             listbox.Items.Clear();
             foreach (var item in itemList)

@@ -67,6 +67,7 @@
             button_MovePageLeft.Size = new Size(47, 39);
             button_MovePageLeft.TabIndex = 1;
             button_MovePageLeft.UseVisualStyleBackColor = false;
+            button_MovePageLeft.Click += button_MovePageLeft_Click;
             // 
             // button_MovePageRight
             // 
@@ -82,6 +83,7 @@
             button_MovePageRight.Size = new Size(47, 39);
             button_MovePageRight.TabIndex = 2;
             button_MovePageRight.UseVisualStyleBackColor = false;
+            button_MovePageRight.Click += button_MovePageRight_Click;
             // 
             // button_OpenSettingsForm
             // 
@@ -154,7 +156,7 @@
             listbox_MainDisplay.Margin = new Padding(4, 3, 4, 3);
             listbox_MainDisplay.Name = "listbox_MainDisplay";
             listbox_MainDisplay.SelectionMode = SelectionMode.None;
-            listbox_MainDisplay.Size = new Size(675, 545);
+            listbox_MainDisplay.Size = new Size(675, 32);
             listbox_MainDisplay.TabIndex = 32;
             listbox_MainDisplay.TabStop = false;
             // 
@@ -169,7 +171,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(76, 116, 212);
-            ClientSize = new Size(702, 685);
+            ClientSize = new Size(702, 172);
             Controls.Add(label_PageDisplay);
             Controls.Add(button_MovePageLeft);
             Controls.Add(button_MovePageRight);
@@ -185,7 +187,7 @@
             Name = "HomeForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "ChronoCount3";
-            Resize += HomeForm_Resize;
+            ResizeEnd += HomeForm_ResizeEnd;
             ResumeLayout(false);
             PerformLayout();
         }

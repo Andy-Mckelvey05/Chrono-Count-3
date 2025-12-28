@@ -39,6 +39,22 @@ namespace Dyanmic_Form_Sizing_Testing
             }
         }
 
+        public void ResizeFormHorizontally()
+        {
+            for (int i = 0; i < item_array.Length; i++)
+            {
+                ResizeControlHorizontally(size_array[i], item_array[i]);
+            }
+        }
+
+        public void ResizeFormVertically()
+        {
+            for (int i = 0; i < item_array.Length; i++)
+            {
+                ResizeControlVertically(size_array[i], item_array[i]);
+            }
+        }
+
         private void ResizeControl(Rectangle r, Control c)
         {
             float xRatio = (float)(form.Width) / (float)(originalFormSize.Width);
@@ -49,6 +65,38 @@ namespace Dyanmic_Form_Sizing_Testing
 
             int newWidth = (int)(r.Width * xRatio);
             int newHeight = (int)(r.Height * yRatio);
+
+            c.Location = new Point(newX, newY);
+            c.Width = newWidth;
+            c.Height = newHeight;
+        }
+
+        private void ResizeControlHorizontally(Rectangle r, Control c)
+        {
+            float xRatio = (float)(form.Width) / (float)(originalFormSize.Width);
+
+            int newX = (int)(r.X * xRatio);
+
+            int newWidth = (int)(r.Width * xRatio);
+
+            int newY = r.Y;
+            int newHeight = r.Height;
+
+            c.Location = new Point(newX, newY);
+            c.Width = newWidth;
+            c.Height = newHeight;
+        }
+
+        private void ResizeControlVertically(Rectangle r, Control c)
+        {
+            float yRatio = (float)(form.Height) / (float)(originalFormSize.Height);
+
+            int newY = (int)(r.Y * yRatio);
+
+            int newHeight = (int)(r.Height * yRatio);
+
+            int newX = r.X;
+            int newWidth = r.Width;
 
             c.Location = new Point(newX, newY);
             c.Width = newWidth;
