@@ -44,11 +44,27 @@ namespace Chrono_Count_3
         {
             int totalPages = timeStampHandler.GetTotalPages();
 
+            if (timeStampHandler.GetTotalItems() == 0)
+            {
+                NoItemsShown();
+                return;
+            }
+
             currentPageIndex = Math.Max(0, Math.Min(currentPageIndex, totalPages - 1));
 
             timeStampHandler.DisplayPage(listbox_MainDisplay, currentPageIndex + 1);
             label_PageDisplay.Text = $"{currentPageIndex + 1}/{totalPages}";
 
+            UpdateCurrentTimeDisplay();
+            listBoxFontSizer.AdjustFontSizes();
+            UpdateSizeDynamic();
+        }
+
+        private void NoItemsShown() 
+        {
+            listbox_MainDisplay.Items.Clear();
+            listbox_MainDisplay.Items.Add("No timestamps available.");
+            label_PageDisplay.Text = "0/0";
             UpdateCurrentTimeDisplay();
             listBoxFontSizer.AdjustFontSizes();
             UpdateSizeDynamic();
@@ -80,7 +96,7 @@ namespace Chrono_Count_3
             RemoveForm removeForm = new RemoveForm(timeStampHandler);
             new ColourSetter(userSettings, removeForm).ApplyColours();
             removeForm.ShowDialog();
-            //timeStampHandler.UpdateFile();
+            timeStampHandler.UpdateFile();
             RefreshForm();
         }
         private void button_OpenSettingsForm_Click(object sender, EventArgs e)
@@ -92,6 +108,12 @@ namespace Chrono_Count_3
 
         private void timer_GameTime_Tick(object sender, EventArgs e)
         {
+            if (timeStampHandler.GetTotalItems() == 0)
+            {
+                NoItemsShown();
+                return;
+            }
+
             timeStampHandler.DisplayPage(listbox_MainDisplay, currentPageIndex + 1);
             UpdateCurrentTimeDisplay();
         }

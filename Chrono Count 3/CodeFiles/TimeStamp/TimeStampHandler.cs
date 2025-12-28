@@ -80,6 +80,11 @@ namespace Chrono_Count_3.CodeFiles.TimeStamp
             return userSettings.ItemsPerPage;
         }
 
+        public int GetTotalItems()
+        {
+            return itemList.Count;
+        }
+
         public void DisplayPage(ListBox listbox, int pageIndex) 
         {
             listbox.Items.Clear();

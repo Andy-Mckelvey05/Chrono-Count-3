@@ -81,7 +81,7 @@ namespace Chrono_Count_3.Forms
         private void button_EditToggle_Click(object sender, EventArgs e)
         {
             ToggleEditing();
-            if (!groupbox_SettingsPage.Enabled && ValidChoises())
+            if (!groupbox_SettingsPage.Enabled)
             {
                 ConfirmChoises();
             }
@@ -115,10 +115,28 @@ namespace Chrono_Count_3.Forms
             }
         }
 
-        private bool ValidChoises()
+        private void button_DecrementIPP_Click(object sender, EventArgs e)
         {
-            return true;
+            int ItemsPerPage = int.Parse(textbox_ItemsPerPage.Text);
+
+            if (ItemsPerPage > 1)
+            {
+                ItemsPerPage--;
+                textbox_ItemsPerPage.Text = ItemsPerPage.ToString();
+            }
         }
+
+        private void button_IncrementIPP_Click(object sender, EventArgs e)
+        {
+            int ItemsPerPage = int.Parse(textbox_ItemsPerPage.Text);
+
+            if (ItemsPerPage < 99)
+            {
+                ItemsPerPage++;
+                textbox_ItemsPerPage.Text = ItemsPerPage.ToString();
+            }
+        }
+
 
         private void ConfirmChoises()
         {
@@ -131,7 +149,6 @@ namespace Chrono_Count_3.Forms
                     textbox_MidColour.Text.Split(',').Select(int.Parse).ToArray(),
                     textbox_BackColour.Text.Split(',').Select(int.Parse).ToArray()
                 ],
-                defaultLengthDTO = 718, // ! May Remove later, currently not implemented
                 descSizeDTO = (LengthOptions)Enum.Parse(typeof(LengthOptions), combobox_DescLength.SelectedItem.ToString()!),
                 dateSizeDTO = (LengthOptions)Enum.Parse(typeof(LengthOptions), combobox_DateLength.SelectedItem.ToString()!),
                 timeSizeDTO = (LengthOptions)Enum.Parse(typeof(LengthOptions), combobox_TimeLength.SelectedItem.ToString()!)

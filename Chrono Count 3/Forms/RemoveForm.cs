@@ -11,11 +11,21 @@ namespace Chrono_Count_3.Forms
             InitializeComponent();
 
             comboBox_PageDropDown.Items.Add("All");
-            for (int i = 0; i < timeStampHandler.GetTotalPages(); i++)
+
+            int totalPages = timeStampHandler.GetTotalPages();
+
+            if (timeStampHandler.GetTotalItems() > 0)
             {
-                comboBox_PageDropDown.Items.Add(i + 1);
+                for (int i = 0; i < totalPages; i++)
+                {
+                    comboBox_PageDropDown.Items.Add(i + 1);
+                }
             }
+
             comboBox_PageDropDown.SelectedIndex = 0;
+
+            comboBox_PageDropDown.Enabled = timeStampHandler.GetTotalItems() > 0;
+            combobox_ItemDropDown.Enabled = timeStampHandler.GetTotalItems() > 0;
         }
 
         private void comboBox_PageDropDown_SelectedIndexChanged(object sender, EventArgs e)

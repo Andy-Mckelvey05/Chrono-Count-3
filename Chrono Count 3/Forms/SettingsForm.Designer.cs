@@ -32,6 +32,8 @@
             button_SetDefault = new Button();
             button_EditToggle = new Button();
             groupbox_SettingsPage = new GroupBox();
+            button_DecrementIPP = new Button();
+            button_IncrementIPP = new Button();
             groupbox_Display = new GroupBox();
             textBox_ExampleTimeStamp = new TextBox();
             combobox_DescLength = new ComboBox();
@@ -89,6 +91,8 @@
             // 
             // groupbox_SettingsPage
             // 
+            groupbox_SettingsPage.Controls.Add(button_DecrementIPP);
+            groupbox_SettingsPage.Controls.Add(button_IncrementIPP);
             groupbox_SettingsPage.Controls.Add(groupbox_Display);
             groupbox_SettingsPage.Controls.Add(groupbox_Colours);
             groupbox_SettingsPage.Controls.Add(label_ItemsPerPage);
@@ -102,6 +106,38 @@
             groupbox_SettingsPage.TabIndex = 5;
             groupbox_SettingsPage.TabStop = false;
             groupbox_SettingsPage.Text = "Settings";
+            // 
+            // button_DecrementIPP
+            // 
+            button_DecrementIPP.BackColor = Color.FromArgb(128, 128, 255);
+            button_DecrementIPP.BackgroundImage = Properties.Resources.LeftArrow;
+            button_DecrementIPP.BackgroundImageLayout = ImageLayout.Stretch;
+            button_DecrementIPP.FlatAppearance.BorderColor = Color.WhiteSmoke;
+            button_DecrementIPP.FlatStyle = FlatStyle.Flat;
+            button_DecrementIPP.Font = new Font("Consolas", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button_DecrementIPP.Location = new Point(170, 34);
+            button_DecrementIPP.Margin = new Padding(4, 3, 4, 3);
+            button_DecrementIPP.Name = "button_DecrementIPP";
+            button_DecrementIPP.Size = new Size(47, 36);
+            button_DecrementIPP.TabIndex = 37;
+            button_DecrementIPP.UseVisualStyleBackColor = false;
+            button_DecrementIPP.Click += button_DecrementIPP_Click;
+            // 
+            // button_IncrementIPP
+            // 
+            button_IncrementIPP.BackColor = Color.FromArgb(128, 128, 255);
+            button_IncrementIPP.BackgroundImage = Properties.Resources.RightArrow;
+            button_IncrementIPP.BackgroundImageLayout = ImageLayout.Stretch;
+            button_IncrementIPP.FlatAppearance.BorderColor = Color.WhiteSmoke;
+            button_IncrementIPP.FlatStyle = FlatStyle.Flat;
+            button_IncrementIPP.Font = new Font("Consolas", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button_IncrementIPP.Location = new Point(293, 34);
+            button_IncrementIPP.Margin = new Padding(4, 3, 4, 3);
+            button_IncrementIPP.Name = "button_IncrementIPP";
+            button_IncrementIPP.Size = new Size(47, 36);
+            button_IncrementIPP.TabIndex = 36;
+            button_IncrementIPP.UseVisualStyleBackColor = false;
+            button_IncrementIPP.Click += button_IncrementIPP_Click;
             // 
             // groupbox_Display
             // 
@@ -343,12 +379,14 @@
             // 
             textbox_ItemsPerPage.BackColor = Color.FromArgb(160, 204, 250);
             textbox_ItemsPerPage.Font = new Font("Consolas", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textbox_ItemsPerPage.Location = new Point(170, 31);
+            textbox_ItemsPerPage.Location = new Point(225, 34);
             textbox_ItemsPerPage.Margin = new Padding(4, 3, 4, 3);
             textbox_ItemsPerPage.MaxLength = 4;
             textbox_ItemsPerPage.Name = "textbox_ItemsPerPage";
+            textbox_ItemsPerPage.ReadOnly = true;
             textbox_ItemsPerPage.Size = new Size(60, 36);
             textbox_ItemsPerPage.TabIndex = 3;
+            textbox_ItemsPerPage.TextAlign = HorizontalAlignment.Center;
             // 
             // SettingsForm
             // 
@@ -403,5 +441,7 @@
         private Panel MidColourIndicator;
         private Panel ForeColourIndicator;
         private TextBox textBox_ExampleTimeStamp;
+        internal Button button_IncrementIPP;
+        internal Button button_DecrementIPP;
     }
 }
