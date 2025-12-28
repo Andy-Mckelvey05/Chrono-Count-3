@@ -3,50 +3,44 @@
     internal class ControlFontSizer
     {
         private readonly List<Control> controls;
+        private readonly Dictionary<Control, int?> maxFontSizes;
 
-        public ControlFontSizer(IEnumerable<Control> controls)
+        public ControlFontSizer(IEnumerable<Control> controls, Dictionary<Control, int?>? maxFontSizes = null)
         {
             this.controls = [.. controls];
+            this.maxFontSizes = maxFontSizes ?? new Dictionary<Control, int?>();
         }
 
         public void AdjustFontSizes()
         {
             foreach (Control control in controls)
             {
-                AdjustFontSizeForControl(control);
+                int? maxSize = null;
+                if (maxFontSizes.ContainsKey(control))
+                    maxSize = maxFontSizes[control];
+
+                AdjustFontSizeForControl(control, maxSize);
             }
         }
 
-        private static void AdjustFontSizeForControl(Control control)
-        {
-            int maxSize = 100;
-            int minSize = 1;
-            int padding = 10;
-
-            string text = GetTextForSizing(control);
-
-            if (string.IsNullOrEmpty(text))
-                return;
-
-            float fontSize = maxSize;
-
-            using (Graphics g = control.CreateGraphics())
-            {
-                while (fontSize > minSize)
-                {
-                    using (Font testFont = new(control.Font.FontFamily, fontSize))
-                    {
-                        if (g.MeasureString(text, testFont).Width
-                            <= control.Width - padding)
-                        {
-                            break;
-                        }
-                    }
-                    fontSize--;
-                }
-            }
-
-            control.Font = new Font(control.Font.FontFamily, fontSize);
+        private static void AdjustFontSizeForControl(Control control, int? maxSize) 
+        { 
+            int actualMax = maxSize ?? 100; 
+            int minSize = 1; int padding = 10; 
+            string text = GetTextForSizing(control); 
+            if (string.IsNullOrEmpty(text)) return; 
+            float fontSize = actualMax; 
+            using (Graphics g = control.CreateGraphics()) 
+            { 
+                while (fontSize > minSize) 
+                { 
+                    using (Font testFont = new(control.Font.FontFamily, fontSize)) 
+                    { 
+                        if (g.MeasureString(text, testFont).Width <= control.Width - padding) break; 
+                    } fontSize--; 
+                } 
+            } 
+            control.Font = new Font(control.Font.FontFamily, fontSize); 
         }
 
         private static string GetTextForSizing(Control control)

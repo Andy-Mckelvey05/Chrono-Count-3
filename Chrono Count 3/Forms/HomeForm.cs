@@ -26,10 +26,13 @@ namespace Chrono_Count_3
 
             this.dynamicControlResizer = new DynamicControlResizer(this);
             this.listBoxFontSizer = new ControlFontSizer(
-            [
-                listbox_MainDisplay,
-                textbox_CurrentTime,
-            ]);
+                [listbox_MainDisplay, textbox_CurrentTime],
+                new Dictionary<Control, int?>()
+                {
+                    { textbox_CurrentTime, 25 },
+                    { listbox_MainDisplay, null }
+                }
+            );
             this.colourSetter = new ColourSetter(userSettings, this);
 
             timeStampHandler.DisplayPage(listbox_MainDisplay, currentPageIndex + 1);

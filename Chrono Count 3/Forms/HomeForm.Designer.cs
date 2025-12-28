@@ -106,7 +106,7 @@
             textbox_CurrentTime.Font = new Font("Consolas", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             textbox_CurrentTime.Location = new Point(13, 12);
             textbox_CurrentTime.Margin = new Padding(4, 3, 4, 3);
-            textbox_CurrentTime.MaximumSize = new Size(400, 40);
+            textbox_CurrentTime.MaximumSize = new Size(10000, 39);
             textbox_CurrentTime.MinimumSize = new Size(0, 39);
             textbox_CurrentTime.Name = "textbox_CurrentTime";
             textbox_CurrentTime.ReadOnly = true;
