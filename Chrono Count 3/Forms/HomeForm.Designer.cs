@@ -181,6 +181,7 @@
             Controls.Add(listbox_MainDisplay);
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
+            MaximumSize = new Size(2000, 10000);
             MinimizeBox = false;
             MinimumSize = new Size(500, 0);
             Name = "HomeForm";
