@@ -17,7 +17,6 @@ namespace Chrono_Count_3
         private readonly ColourSetter colourSetter;
 
         private int currentPageIndex = 0;
-        private int defaultHight = 500;
 
         public HomeForm(UserSettings userSettings, TimeStampHandler timeStampHandler)
         {
@@ -121,7 +120,6 @@ namespace Chrono_Count_3
                 label_PageDisplay.Text = $"{currentPageIndex + 1}/{timeStampHandler.GetTotalPages()}";
             }
         }
-
 
     }
 }

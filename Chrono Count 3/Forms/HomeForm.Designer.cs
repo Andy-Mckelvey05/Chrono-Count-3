@@ -43,15 +43,14 @@
             // 
             // label_PageDisplay
             // 
-            label_PageDisplay.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            label_PageDisplay.AutoSize = true;
             label_PageDisplay.Font = new Font("Consolas", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label_PageDisplay.Location = new Point(473, 17);
+            label_PageDisplay.Location = new Point(408, 12);
             label_PageDisplay.Margin = new Padding(4, 0, 4, 0);
             label_PageDisplay.Name = "label_PageDisplay";
-            label_PageDisplay.Size = new Size(59, 32);
+            label_PageDisplay.Size = new Size(178, 39);
             label_PageDisplay.TabIndex = 39;
             label_PageDisplay.Text = "#/#";
+            label_PageDisplay.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // button_MovePageLeft
             // 
