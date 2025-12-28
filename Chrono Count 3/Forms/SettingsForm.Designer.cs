@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsForm));
             button_SetDefault = new Button();
-            button_EditToggle = new Button();
+            button_ConfirmSettings = new Button();
             groupbox_SettingsPage = new GroupBox();
             button_DecrementIPP = new Button();
             button_IncrementIPP = new Button();
@@ -65,29 +65,29 @@
             button_SetDefault.FlatAppearance.BorderColor = Color.Black;
             button_SetDefault.FlatStyle = FlatStyle.Flat;
             button_SetDefault.Font = new Font("Consolas", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button_SetDefault.Location = new Point(13, 92);
+            button_SetDefault.Location = new Point(326, 408);
             button_SetDefault.Margin = new Padding(4, 3, 4, 3);
             button_SetDefault.Name = "button_SetDefault";
-            button_SetDefault.Size = new Size(496, 29);
+            button_SetDefault.Size = new Size(183, 74);
             button_SetDefault.TabIndex = 2;
             button_SetDefault.Text = "Restore to Default Settings";
             button_SetDefault.UseVisualStyleBackColor = false;
             button_SetDefault.Click += button_SetDefault_Click;
             // 
-            // button_EditToggle
+            // button_ConfirmSettings
             // 
-            button_EditToggle.BackColor = Color.FromArgb(128, 128, 255);
-            button_EditToggle.FlatAppearance.BorderColor = Color.Black;
-            button_EditToggle.FlatStyle = FlatStyle.Flat;
-            button_EditToggle.Font = new Font("Consolas", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button_EditToggle.Location = new Point(13, 12);
-            button_EditToggle.Margin = new Padding(4, 3, 4, 3);
-            button_EditToggle.Name = "button_EditToggle";
-            button_EditToggle.Size = new Size(496, 74);
-            button_EditToggle.TabIndex = 1;
-            button_EditToggle.Text = "Click to Edit Settings";
-            button_EditToggle.UseVisualStyleBackColor = false;
-            button_EditToggle.Click += button_EditToggle_Click;
+            button_ConfirmSettings.BackColor = Color.FromArgb(128, 128, 255);
+            button_ConfirmSettings.FlatAppearance.BorderColor = Color.Black;
+            button_ConfirmSettings.FlatStyle = FlatStyle.Flat;
+            button_ConfirmSettings.Font = new Font("Consolas", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button_ConfirmSettings.Location = new Point(13, 408);
+            button_ConfirmSettings.Margin = new Padding(4, 3, 4, 3);
+            button_ConfirmSettings.Name = "button_ConfirmSettings";
+            button_ConfirmSettings.Size = new Size(305, 74);
+            button_ConfirmSettings.TabIndex = 1;
+            button_ConfirmSettings.Text = "Confirm Settings";
+            button_ConfirmSettings.UseVisualStyleBackColor = false;
+            button_ConfirmSettings.Click += button_ConfirmSettings_Click;
             // 
             // groupbox_SettingsPage
             // 
@@ -98,7 +98,7 @@
             groupbox_SettingsPage.Controls.Add(label_ItemsPerPage);
             groupbox_SettingsPage.Controls.Add(textbox_ItemsPerPage);
             groupbox_SettingsPage.Font = new Font("Consolas", 15.75F);
-            groupbox_SettingsPage.Location = new Point(13, 127);
+            groupbox_SettingsPage.Location = new Point(13, 12);
             groupbox_SettingsPage.Margin = new Padding(4, 3, 4, 3);
             groupbox_SettingsPage.Name = "groupbox_SettingsPage";
             groupbox_SettingsPage.Padding = new Padding(4, 3, 4, 3);
@@ -394,10 +394,10 @@
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
             BackColor = Color.FromArgb(76, 116, 212);
-            ClientSize = new Size(523, 522);
+            ClientSize = new Size(523, 491);
             Controls.Add(groupbox_SettingsPage);
             Controls.Add(button_SetDefault);
-            Controls.Add(button_EditToggle);
+            Controls.Add(button_ConfirmSettings);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
@@ -405,7 +405,6 @@
             Name = "SettingsForm";
             StartPosition = FormStartPosition.CenterParent;
             Text = "Settings Form";
-            Load += SettingsForm_Load;
             groupbox_SettingsPage.ResumeLayout(false);
             groupbox_SettingsPage.PerformLayout();
             groupbox_Display.ResumeLayout(false);
@@ -418,7 +417,7 @@
         #endregion
 
         private Button button_SetDefault;
-        private Button button_EditToggle;
+        private Button button_ConfirmSettings;
         private GroupBox groupbox_SettingsPage;
         private Button button_EditBackColour;
         private Button button_EditMidColour;
