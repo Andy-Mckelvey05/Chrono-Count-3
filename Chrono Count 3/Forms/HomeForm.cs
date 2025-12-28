@@ -57,7 +57,7 @@ namespace Chrono_Count_3
 
         private void UpdateSizeDynamic(int bottomPadding = 15)
         {
-            listbox_MainDisplay.Height = listbox_MainDisplay.PreferredHeight;
+            listbox_MainDisplay.Height = (listbox_MainDisplay.ItemHeight * userSettings.ItemsPerPage) + bottomPadding;
 
             int nonClientHeight = this.Height - this.ClientSize.Height;
             this.Height = listbox_MainDisplay.Top + listbox_MainDisplay.Height + bottomPadding + nonClientHeight;
@@ -109,18 +109,19 @@ namespace Chrono_Count_3
             {
                 currentPageIndex--;
                 timeStampHandler.DisplayPage(listbox_MainDisplay, currentPageIndex + 1);
-                label_PageDisplay.Text = $"{currentPageIndex + 1}/{timeStampHandler.GetTotalPages()}";
+                //label_PageDisplay.Text = $"{currentPageIndex + 1}/{timeStampHandler.GetTotalPages()}";
+                RefreshForm();
             }
 
         }
-
         private void button_MovePageRight_Click(object sender, EventArgs e)
         {
             if (currentPageIndex < timeStampHandler.GetTotalPages() - 1)
             {
                 currentPageIndex++;
                 timeStampHandler.DisplayPage(listbox_MainDisplay, currentPageIndex + 1);
-                label_PageDisplay.Text = $"{currentPageIndex + 1}/{timeStampHandler.GetTotalPages()}";
+                //label_PageDisplay.Text = $"{currentPageIndex + 1}/{timeStampHandler.GetTotalPages()}";
+                RefreshForm();
             }
         }
 
