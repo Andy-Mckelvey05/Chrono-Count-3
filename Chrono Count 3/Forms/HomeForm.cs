@@ -110,7 +110,6 @@ namespace Chrono_Count_3
             {
                 currentPageIndex--;
                 timeStampHandler.DisplayPage(listbox_MainDisplay, currentPageIndex + 1);
-                //label_PageDisplay.Text = $"{currentPageIndex + 1}/{timeStampHandler.GetTotalPages()}";
                 RefreshForm();
             }
 
@@ -121,7 +120,6 @@ namespace Chrono_Count_3
             {
                 currentPageIndex++;
                 timeStampHandler.DisplayPage(listbox_MainDisplay, currentPageIndex + 1);
-                //label_PageDisplay.Text = $"{currentPageIndex + 1}/{timeStampHandler.GetTotalPages()}";
                 RefreshForm();
             }
         }

@@ -38,6 +38,19 @@ namespace Chrono_Count_3.CodeFiles.TimeStamp
             itemList.Sort();
         }
 
+        public int RemoveDoneTimeStamps()
+        {
+            int removedCount = itemList.RemoveAll(ts => ts.Date < DateTime.Now);
+
+            if (removedCount > 0)
+            {
+                itemList.Sort();
+            }
+
+            return removedCount;
+        }
+
+
         private List<TimeStamp> GetPage(int pageIndex)
         {
             int totalPages = GetTotalPages();

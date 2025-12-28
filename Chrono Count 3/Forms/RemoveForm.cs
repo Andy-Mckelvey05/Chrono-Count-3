@@ -33,6 +33,7 @@ namespace Chrono_Count_3.Forms
             if (comboBox_PageDropDown.SelectedIndex == 0)
             {
                 timeStampHandler.DisplayAllShort(combobox_ItemDropDown);
+                combobox_ItemDropDown.Items.Insert(0, "Remove 'Done'");
             }
             else
             {
@@ -45,25 +46,48 @@ namespace Chrono_Count_3.Forms
         {
             if (comboBox_PageDropDown.SelectedIndex == 0)
             {
-                int selectedIndex = combobox_ItemDropDown.SelectedIndex;
-                timeStampHandler.RemoveTimeStamp(selectedIndex);
+                if (combobox_ItemDropDown.SelectedIndex == 0)
+                {
+                    timeStampHandler.RemoveDoneTimeStamps();
+                }
+                else 
+                {
+                    RemoveBasedOnindex();
+                }
             }
             else
             {
-                int pageSelection = comboBox_PageDropDown.SelectedIndex;
-                int indexOnPage = combobox_ItemDropDown.SelectedIndex;
-
-                if (indexOnPage < 0) 
-                {
-                    return; 
-                }
-
-                int globalIndex = ((pageSelection - 1) * timeStampHandler.GetItemsPerPage()) + indexOnPage;
-
-                timeStampHandler.RemoveTimeStamp(globalIndex);
+                RemoveBasedOnPage();
             }
             this.Close();
             this.Dispose();
+        }
+
+        private void RemoveBasedOnindex()
+        {
+            int selectedIndex = combobox_ItemDropDown.SelectedIndex - 1;
+
+            if (selectedIndex < 0) 
+            {
+                return;
+            }
+
+            timeStampHandler.RemoveTimeStamp(selectedIndex);
+        }
+
+        private void RemoveBasedOnPage() 
+        {
+            int pageSelection = comboBox_PageDropDown.SelectedIndex;
+            int indexOnPage = combobox_ItemDropDown.SelectedIndex;
+
+            if (indexOnPage < 0)
+            {
+                return;
+            }
+
+            int globalIndex = ((pageSelection - 1) * timeStampHandler.GetItemsPerPage()) + indexOnPage;
+
+            timeStampHandler.RemoveTimeStamp(globalIndex);
         }
     }
 }
