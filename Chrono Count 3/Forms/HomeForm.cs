@@ -1,4 +1,3 @@
-
 using Chrono_Count_3.CodeFiles.Settings;
 using Chrono_Count_3.CodeFiles.SizerTools;
 using Chrono_Count_3.CodeFiles.TimeStamp;

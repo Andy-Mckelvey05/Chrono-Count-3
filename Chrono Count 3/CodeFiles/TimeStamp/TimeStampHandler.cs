@@ -1,6 +1,5 @@
 ﻿using Chrono_Count_3.CodeFiles.Settings;
 using Chrono_Count_3.CodeFiles.TimeStamp.TimeStampAssist.LengthOptionsContainer;
-using System.Drawing.Printing;
 using System.Globalization;
 
 namespace Chrono_Count_3.CodeFiles.TimeStamp
@@ -33,7 +32,6 @@ namespace Chrono_Count_3.CodeFiles.TimeStamp
 
         public void RemoveTimeStamp(int index)
         {
-            MessageBox.Show(itemList[index].ToString());
             itemList.Remove(itemList[index]);
             itemList.Sort();
         }

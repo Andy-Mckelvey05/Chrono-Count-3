@@ -1,6 +1,5 @@
 ﻿using Chrono_Count_3.CodeFiles.TimeStamp.TimeStampAssist.LengthOptionsContainer;
 using System.Text.Json;
-using static System.Windows.Forms.Design.AxImporter;
 
 namespace Chrono_Count_3.CodeFiles.Settings
 {
@@ -40,7 +39,7 @@ namespace Chrono_Count_3.CodeFiles.Settings
             }
             catch // Sets to default Settings if any issues occur
             {
-                MessageBox.Show("Failed to Load Settings, Setting to Defaults");
+                MessageBox.Show("Failed to Load Settings, Setting to Defaults", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 using (StreamWriter writeSettings = new(settingsPath))
                 {
                     writeSettings.WriteLine(GetDefaultJSON());

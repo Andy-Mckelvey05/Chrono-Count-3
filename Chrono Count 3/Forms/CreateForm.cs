@@ -1,15 +1,4 @@
-﻿using Chrono_Count_3.CodeFiles;
-using Chrono_Count_3.CodeFiles.TimeStamp;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Xml.Linq;
+﻿using Chrono_Count_3.CodeFiles.TimeStamp;
 
 namespace Chrono_Count_3.Forms
 {
