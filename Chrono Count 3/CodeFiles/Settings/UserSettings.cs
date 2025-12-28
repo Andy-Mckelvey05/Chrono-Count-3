@@ -26,6 +26,13 @@ namespace Chrono_Count_3.CodeFiles.Settings
 
         public void ReadSettingsJSON(string settingsPath)
         {
+            if (!File.Exists(settingsPath))
+            {
+                string defaultJson = GetDefaultJSON();
+                File.WriteAllText(settingsPath, defaultJson);
+                SetSettingsJSON(defaultJson);
+                return;
+            }
             try
             {
                 string json;
