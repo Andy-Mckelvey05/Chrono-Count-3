@@ -59,7 +59,6 @@ namespace Chrono_Count_3
             listBoxFontSizer.AdjustFontSizes();
             UpdateSizeDynamic();
         }
-
         private void NoItemsShown() 
         {
             listbox_MainDisplay.Items.Clear();
@@ -69,7 +68,6 @@ namespace Chrono_Count_3
             listBoxFontSizer.AdjustFontSizes();
             UpdateSizeDynamic();
         }
-
         private void UpdateSizeDynamic(int bottomPadding = 15)
         {
             listbox_MainDisplay.Height = (listbox_MainDisplay.ItemHeight * userSettings.ItemsPerPage) + bottomPadding;
@@ -77,7 +75,6 @@ namespace Chrono_Count_3
             int nonClientHeight = this.Height - this.ClientSize.Height;
             this.Height = listbox_MainDisplay.Top + listbox_MainDisplay.Height + bottomPadding + nonClientHeight;
         }
-
         private void UpdateCurrentTimeDisplay()
         {
             textbox_CurrentTime.Text = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
@@ -85,7 +82,7 @@ namespace Chrono_Count_3
 
         private void button_OpenCreateForm_Click(object sender, EventArgs e)
         {
-            CreateForm createForm = new CreateForm(timeStampHandler);
+            CreateForm createForm = new(timeStampHandler);
             new ColourSetter(userSettings, createForm).ApplyColours();
             createForm.ShowDialog();
             timeStampHandler.UpdateFile();
@@ -93,7 +90,7 @@ namespace Chrono_Count_3
         }
         private void button_OpenRemoveForm_Click(object sender, EventArgs e)
         {
-            RemoveForm removeForm = new RemoveForm(timeStampHandler);
+            RemoveForm removeForm = new(timeStampHandler);
             new ColourSetter(userSettings, removeForm).ApplyColours();
             removeForm.ShowDialog();
             timeStampHandler.UpdateFile();
@@ -101,30 +98,10 @@ namespace Chrono_Count_3
         }
         private void button_OpenSettingsForm_Click(object sender, EventArgs e)
         {
-            SettingsForm settingsForm = new SettingsForm(userSettings);
+            SettingsForm settingsForm = new(userSettings);
             new ColourSetter(userSettings, settingsForm).ApplyColours();
             settingsForm.ShowDialog();
         }
-
-        private void timer_GameTime_Tick(object sender, EventArgs e)
-        {
-            if (timeStampHandler.GetTotalItems() == 0)
-            {
-                NoItemsShown();
-                return;
-            }
-
-            timeStampHandler.DisplayPage(listbox_MainDisplay, currentPageIndex + 1);
-            UpdateCurrentTimeDisplay();
-        }
-
-        private void HomeForm_ResizeEnd(object sender, EventArgs e)
-        {
-            dynamicControlResizer.ResizeFormHorizontally();
-            listBoxFontSizer.AdjustFontSizes();
-            UpdateSizeDynamic();
-        }
-
         private void button_MovePageLeft_Click(object sender, EventArgs e)
         {
             if (currentPageIndex > 0)
@@ -145,5 +122,22 @@ namespace Chrono_Count_3
             }
         }
 
+        private void timer_GameTime_Tick(object sender, EventArgs e)
+        {
+            if (timeStampHandler.GetTotalItems() == 0)
+            {
+                NoItemsShown();
+                return;
+            }
+
+            timeStampHandler.DisplayPage(listbox_MainDisplay, currentPageIndex + 1);
+            UpdateCurrentTimeDisplay();
+        }
+        private void HomeForm_ResizeEnd(object sender, EventArgs e)
+        {
+            dynamicControlResizer.ResizeFormHorizontally();
+            listBoxFontSizer.AdjustFontSizes();
+            UpdateSizeDynamic();
+        }
     }
 }

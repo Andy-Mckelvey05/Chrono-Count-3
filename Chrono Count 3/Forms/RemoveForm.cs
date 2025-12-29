@@ -11,21 +11,16 @@ namespace Chrono_Count_3.Forms
             InitializeComponent();
 
             comboBox_PageDropDown.Items.Add("All");
-
             int totalPages = timeStampHandler.GetTotalPages();
-
-            if (timeStampHandler.GetTotalItems() > 0)
-            {
-                for (int i = 0; i < totalPages; i++)
-                {
-                    comboBox_PageDropDown.Items.Add(i + 1);
-                }
-            }
+            comboBox_PageDropDown.Items.AddRange(
+                [.. Enumerable.Range(1, totalPages).Cast<object>()]
+            );
 
             comboBox_PageDropDown.SelectedIndex = 0;
 
-            comboBox_PageDropDown.Enabled = timeStampHandler.GetTotalItems() > 0;
-            combobox_ItemDropDown.Enabled = timeStampHandler.GetTotalItems() > 0;
+            bool hasItems = timeStampHandler.GetTotalItems() > 0;
+            comboBox_PageDropDown.Enabled = hasItems;
+            combobox_ItemDropDown.Enabled = hasItems;
         }
 
         private void comboBox_PageDropDown_SelectedIndexChanged(object sender, EventArgs e)
@@ -41,29 +36,26 @@ namespace Chrono_Count_3.Forms
             }
             combobox_ItemDropDown.SelectedIndex = 0;
         }
-
         private void button_Remove_Click(object sender, EventArgs e)
         {
-            if (comboBox_PageDropDown.SelectedIndex == 0)
+            if (comboBox_PageDropDown.SelectedIndex == 0 && combobox_ItemDropDown.SelectedIndex == 0)
             {
-                if (combobox_ItemDropDown.SelectedIndex == 0)
-                {
-                    timeStampHandler.RemoveDoneTimeStamps();
-                }
-                else 
-                {
-                    RemoveBasedOnindex();
-                }
+                timeStampHandler.RemoveDoneTimeStamps();
+            }
+            else if (comboBox_PageDropDown.SelectedIndex == 0)
+            {
+                RemoveBasedOnIndex();
             }
             else
             {
                 RemoveBasedOnPage();
             }
-            this.Close();
-            this.Dispose();
+
+            Close();
+            Dispose();
         }
 
-        private void RemoveBasedOnindex()
+        private void RemoveBasedOnIndex()
         {
             int selectedIndex = combobox_ItemDropDown.SelectedIndex - 1;
 
@@ -74,7 +66,6 @@ namespace Chrono_Count_3.Forms
 
             timeStampHandler.RemoveTimeStamp(selectedIndex);
         }
-
         private void RemoveBasedOnPage() 
         {
             int pageSelection = comboBox_PageDropDown.SelectedIndex;

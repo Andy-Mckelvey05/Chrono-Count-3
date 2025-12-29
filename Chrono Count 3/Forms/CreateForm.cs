@@ -20,7 +20,7 @@ namespace Chrono_Count_3.Forms
 
         public bool IsNameValid(string name) 
         {
-            if (string.IsNullOrWhiteSpace(name))
+            if (string.IsNullOrWhiteSpace(name?.Trim()))
             {
                 MessageBox.Show("Please Enter A Name", "Error",MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 RefreshPage();
