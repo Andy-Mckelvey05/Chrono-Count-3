@@ -6,9 +6,9 @@ namespace Chrono_Count_3.Forms
     {
         private readonly UserSettings settings;
 
-        public List<Control> ForeControls { get; } = new();
-        public List<Control> MidControls { get; } = new();
-        public List<Control> BackControls { get; } = new();
+        public List<Control> ForeControls { get; } = [];
+        public List<Control> MidControls { get; } = [];
+        public List<Control> BackControls { get; } = [];
 
         public ColourSetter(UserSettings settings, Form form)
         {

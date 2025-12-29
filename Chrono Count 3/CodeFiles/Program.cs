@@ -11,11 +11,11 @@ namespace Chrono_Count_3.CodeFiles
         [STAThread]
         static void Main()
         {
-            string dataPath = $@"{Environment.CurrentDirectory}\Data.csv";
-            string settingsPath = $@"{Environment.CurrentDirectory}\UserSettings.json";
+            string dataPath = Path.Combine(Environment.CurrentDirectory, "Data.csv");
+            string settingsPath = Path.Combine(Environment.CurrentDirectory, "UserSettings.json");
 
-            UserSettings userSettings = new UserSettings(settingsPath);
-            TimeStampHandler timeStampHandler = new TimeStampHandler(userSettings, dataPath);        
+            UserSettings userSettings = new(settingsPath);
+            TimeStampHandler timeStampHandler = new(userSettings, dataPath);
 
             ApplicationConfiguration.Initialize();
             Application.Run(new HomeForm(userSettings, timeStampHandler));

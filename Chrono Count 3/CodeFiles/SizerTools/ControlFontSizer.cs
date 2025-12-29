@@ -8,7 +8,7 @@
         public ControlFontSizer(IEnumerable<Control> controls, Dictionary<Control, int?>? maxFontSizes = null)
         {
             this.controls = [.. controls];
-            this.maxFontSizes = maxFontSizes ?? new Dictionary<Control, int?>();
+            this.maxFontSizes = maxFontSizes ?? [];
         }
 
         public void AdjustFontSizes()
@@ -16,8 +16,10 @@
             foreach (Control control in controls)
             {
                 int? maxSize = null;
-                if (maxFontSizes.ContainsKey(control))
-                    maxSize = maxFontSizes[control];
+                if (maxFontSizes.TryGetValue(control, out int? value)) 
+                {
+                    maxSize = value;
+                }
 
                 AdjustFontSizeForControl(control, maxSize);
             }
