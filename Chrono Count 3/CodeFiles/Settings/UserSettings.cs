@@ -5,13 +5,14 @@ namespace Chrono_Count_3.CodeFiles.Settings
 {
     public class UserSettings
     {
+        private readonly string settingsPath;
+
         private int itemsPerPage;
         private int[][] colourScheme;
         private LengthOptions descSize;
         private LengthOptions dateSize;
         private LengthOptions timeSize;
-        private string settingsPath;
-
+        
         public UserSettings(string settingsPath) 
         {
             this.settingsPath = settingsPath;
@@ -35,30 +36,21 @@ namespace Chrono_Count_3.CodeFiles.Settings
             }
             try
             {
-                string json;
-                using (var readSettings = new StreamReader(settingsPath))
-                {
-                    json = readSettings.ReadToEnd() ?? GetDefaultJSON();
-                }
+                string json = File.ReadAllText(settingsPath);
                 SetSettingsJSON(json);
             }
-            catch // Sets to default Settings if any issues occur
+            catch
             {
                 MessageBox.Show("Failed to Load Settings, Setting to Defaults", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                using (StreamWriter writeSettings = new(settingsPath))
-                {
-                    writeSettings.WriteLine(GetDefaultJSON());
-                }
-                ReadSettingsJSON(settingsPath);
+                string defaultJson = GetDefaultJSON();
+                File.WriteAllText(settingsPath, defaultJson);
+                SetSettingsJSON(defaultJson);
             }
         }
         public void WriteSettingsJSON(UserSettingDto x)
         {
             string json = JsonSerializer.Serialize(x);
-            using (StreamWriter writeSettings = new(settingsPath))
-            {
-                writeSettings.WriteLine(json);
-            }
+            File.WriteAllText(settingsPath, json);
 
             string exePath = Application.ExecutablePath;
             System.Diagnostics.Process.Start(exePath);
@@ -67,8 +59,7 @@ namespace Chrono_Count_3.CodeFiles.Settings
 
         private void SetSettingsJSON(string JSON)
         {
-            UserSettingDto settings = JsonSerializer.Deserialize<UserSettingDto>(JSON)!;
-
+            UserSettingDto settings = JsonSerializer.Deserialize<UserSettingDto>(JSON)! ?? throw new InvalidOperationException("Failed to parse settings JSON.");
             itemsPerPage = settings.itemsPerPageDTO;
             colourScheme = settings.colourSchemeDTO;
             descSize = settings.descSizeDTO;
@@ -77,27 +68,14 @@ namespace Chrono_Count_3.CodeFiles.Settings
         }
         private string GetDefaultJSON()
         {
-            UserSettingDto settings = new UserSettingDto
-            {
-                itemsPerPageDTO = 5,
-                colourSchemeDTO =
-                [
-                    [128, 128, 255],
-                    [160, 204, 250],
-                    [76, 116, 212],
-                ],
-                descSizeDTO = LengthOptions.Medium,
-                dateSizeDTO = LengthOptions.Medium,
-                timeSizeDTO = LengthOptions.Medium
-            };
-            return JsonSerializer.Serialize(settings);
+            return JsonSerializer.Serialize(GetDefaultSettings());
         }
 
         public UserSettingDto GetDefaultSettings()
         {
             UserSettingDto settings = new UserSettingDto
             {
-                itemsPerPageDTO = 10,
+                itemsPerPageDTO = 5,
                 colourSchemeDTO =
                 [
                     [128, 128, 255],
