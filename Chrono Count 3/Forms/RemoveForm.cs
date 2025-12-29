@@ -52,7 +52,6 @@ namespace Chrono_Count_3.Forms
             }
 
             Close();
-            Dispose();
         }
 
         private void RemoveBasedOnIndex()

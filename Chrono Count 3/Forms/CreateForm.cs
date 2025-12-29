@@ -49,7 +49,6 @@ namespace Chrono_Count_3.Forms
                 timeStampHandler.AddTimeStamp(name, DateTime.Parse(time));
 
                 this.Close();
-                this.Dispose();
             }
         }
     }

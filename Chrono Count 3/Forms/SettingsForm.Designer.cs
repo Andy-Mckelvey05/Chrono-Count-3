@@ -69,7 +69,7 @@
             button_SetDefault.Margin = new Padding(4, 3, 4, 3);
             button_SetDefault.Name = "button_SetDefault";
             button_SetDefault.Size = new Size(183, 74);
-            button_SetDefault.TabIndex = 2;
+            button_SetDefault.TabIndex = 10;
             button_SetDefault.Text = "Restore to Default Settings";
             button_SetDefault.UseVisualStyleBackColor = false;
             button_SetDefault.Click += button_SetDefault_Click;
@@ -84,7 +84,7 @@
             button_ConfirmSettings.Margin = new Padding(4, 3, 4, 3);
             button_ConfirmSettings.Name = "button_ConfirmSettings";
             button_ConfirmSettings.Size = new Size(305, 74);
-            button_ConfirmSettings.TabIndex = 1;
+            button_ConfirmSettings.TabIndex = 9;
             button_ConfirmSettings.Text = "Confirm Settings";
             button_ConfirmSettings.UseVisualStyleBackColor = false;
             button_ConfirmSettings.Click += button_ConfirmSettings_Click;
@@ -103,7 +103,7 @@
             groupbox_SettingsPage.Name = "groupbox_SettingsPage";
             groupbox_SettingsPage.Padding = new Padding(4, 3, 4, 3);
             groupbox_SettingsPage.Size = new Size(496, 390);
-            groupbox_SettingsPage.TabIndex = 5;
+            groupbox_SettingsPage.TabIndex = 0;
             groupbox_SettingsPage.TabStop = false;
             groupbox_SettingsPage.Text = "Settings";
             // 
@@ -119,7 +119,7 @@
             button_DecrementIPP.Margin = new Padding(4, 3, 4, 3);
             button_DecrementIPP.Name = "button_DecrementIPP";
             button_DecrementIPP.Size = new Size(47, 36);
-            button_DecrementIPP.TabIndex = 37;
+            button_DecrementIPP.TabIndex = 1;
             button_DecrementIPP.UseVisualStyleBackColor = false;
             button_DecrementIPP.Click += button_DecrementIPP_Click;
             // 
@@ -135,7 +135,7 @@
             button_IncrementIPP.Margin = new Padding(4, 3, 4, 3);
             button_IncrementIPP.Name = "button_IncrementIPP";
             button_IncrementIPP.Size = new Size(47, 36);
-            button_IncrementIPP.TabIndex = 36;
+            button_IncrementIPP.TabIndex = 2;
             button_IncrementIPP.UseVisualStyleBackColor = false;
             button_IncrementIPP.Click += button_IncrementIPP_Click;
             // 
@@ -148,7 +148,7 @@
             groupbox_Display.Location = new Point(7, 73);
             groupbox_Display.Name = "groupbox_Display";
             groupbox_Display.Size = new Size(478, 147);
-            groupbox_Display.TabIndex = 35;
+            groupbox_Display.TabIndex = 0;
             groupbox_Display.TabStop = false;
             groupbox_Display.Text = "Item Display";
             // 
@@ -164,7 +164,7 @@
             textBox_ExampleTimeStamp.Name = "textBox_ExampleTimeStamp";
             textBox_ExampleTimeStamp.ReadOnly = true;
             textBox_ExampleTimeStamp.Size = new Size(462, 68);
-            textBox_ExampleTimeStamp.TabIndex = 32;
+            textBox_ExampleTimeStamp.TabIndex = 0;
             textBox_ExampleTimeStamp.TabStop = false;
             textBox_ExampleTimeStamp.Text = "---------------------------------------------\r\n---------------------------------------------\r\n---------------------------------------------\r\n";
             // 
@@ -178,7 +178,7 @@
             combobox_DescLength.Location = new Point(6, 31);
             combobox_DescLength.Name = "combobox_DescLength";
             combobox_DescLength.Size = new Size(150, 32);
-            combobox_DescLength.TabIndex = 4;
+            combobox_DescLength.TabIndex = 3;
             combobox_DescLength.SelectionChangeCommitted += combobox_DescLength_SelectionChangeCommitted;
             // 
             // combobox_DateLength
@@ -191,7 +191,7 @@
             combobox_DateLength.Location = new Point(162, 31);
             combobox_DateLength.Name = "combobox_DateLength";
             combobox_DateLength.Size = new Size(150, 32);
-            combobox_DateLength.TabIndex = 5;
+            combobox_DateLength.TabIndex = 4;
             combobox_DateLength.SelectionChangeCommitted += combobox_DateLength_SelectionChangeCommitted;
             // 
             // combobox_TimeLength
@@ -204,7 +204,7 @@
             combobox_TimeLength.Location = new Point(318, 31);
             combobox_TimeLength.Name = "combobox_TimeLength";
             combobox_TimeLength.Size = new Size(150, 32);
-            combobox_TimeLength.TabIndex = 6;
+            combobox_TimeLength.TabIndex = 5;
             combobox_TimeLength.SelectionChangeCommitted += combobox_TimeLength_SelectionChangeCommitted;
             // 
             // groupbox_Colours
@@ -234,7 +234,7 @@
             BackColourIndicator.Location = new Point(278, 111);
             BackColourIndicator.Name = "BackColourIndicator";
             BackColourIndicator.Size = new Size(90, 33);
-            BackColourIndicator.TabIndex = 31;
+            BackColourIndicator.TabIndex = 0;
             // 
             // MidColourIndicator
             // 
@@ -242,7 +242,7 @@
             MidColourIndicator.Location = new Point(278, 67);
             MidColourIndicator.Name = "MidColourIndicator";
             MidColourIndicator.Size = new Size(90, 33);
-            MidColourIndicator.TabIndex = 30;
+            MidColourIndicator.TabIndex = 0;
             // 
             // ForeColourIndicator
             // 
@@ -250,7 +250,7 @@
             ForeColourIndicator.Location = new Point(278, 28);
             ForeColourIndicator.Name = "ForeColourIndicator";
             ForeColourIndicator.Size = new Size(90, 33);
-            ForeColourIndicator.TabIndex = 29;
+            ForeColourIndicator.TabIndex = 0;
             // 
             // label_ForeColour
             // 
@@ -260,7 +260,7 @@
             label_ForeColour.Margin = new Padding(4, 0, 4, 0);
             label_ForeColour.Name = "label_ForeColour";
             label_ForeColour.Size = new Size(77, 28);
-            label_ForeColour.TabIndex = 20;
+            label_ForeColour.TabIndex = 0;
             label_ForeColour.Text = "Fore:";
             label_ForeColour.TextAlign = ContentAlignment.TopRight;
             // 
@@ -273,7 +273,7 @@
             textbox_MidColour.Name = "textbox_MidColour";
             textbox_MidColour.ReadOnly = true;
             textbox_MidColour.Size = new Size(180, 36);
-            textbox_MidColour.TabIndex = 28;
+            textbox_MidColour.TabIndex = 0;
             textbox_MidColour.TabStop = false;
             // 
             // textbox_ForeColour
@@ -285,7 +285,7 @@
             textbox_ForeColour.Name = "textbox_ForeColour";
             textbox_ForeColour.ReadOnly = true;
             textbox_ForeColour.Size = new Size(180, 36);
-            textbox_ForeColour.TabIndex = 26;
+            textbox_ForeColour.TabIndex = 0;
             textbox_ForeColour.TabStop = false;
             // 
             // button_EditBackColour
@@ -297,7 +297,7 @@
             button_EditBackColour.Margin = new Padding(4, 3, 4, 3);
             button_EditBackColour.Name = "button_EditBackColour";
             button_EditBackColour.Size = new Size(88, 33);
-            button_EditBackColour.TabIndex = 9;
+            button_EditBackColour.TabIndex = 8;
             button_EditBackColour.Text = "Edit";
             button_EditBackColour.UseVisualStyleBackColor = false;
             button_EditBackColour.Click += button_EditBackColour_Click;
@@ -310,7 +310,7 @@
             label_BackColour.Margin = new Padding(4, 0, 4, 0);
             label_BackColour.Name = "label_BackColour";
             label_BackColour.Size = new Size(77, 28);
-            label_BackColour.TabIndex = 22;
+            label_BackColour.TabIndex = 0;
             label_BackColour.Text = "Back:";
             // 
             // textbox_BackColour
@@ -322,7 +322,7 @@
             textbox_BackColour.Name = "textbox_BackColour";
             textbox_BackColour.ReadOnly = true;
             textbox_BackColour.Size = new Size(180, 36);
-            textbox_BackColour.TabIndex = 27;
+            textbox_BackColour.TabIndex = 0;
             textbox_BackColour.TabStop = false;
             // 
             // button_EditForeColour
@@ -334,7 +334,7 @@
             button_EditForeColour.Margin = new Padding(4, 3, 4, 3);
             button_EditForeColour.Name = "button_EditForeColour";
             button_EditForeColour.Size = new Size(88, 33);
-            button_EditForeColour.TabIndex = 7;
+            button_EditForeColour.TabIndex = 6;
             button_EditForeColour.Text = "Edit";
             button_EditForeColour.UseVisualStyleBackColor = false;
             button_EditForeColour.Click += button_EditForeColour_Click;
@@ -347,7 +347,7 @@
             label_MidColour.Margin = new Padding(4, 0, 4, 0);
             label_MidColour.Name = "label_MidColour";
             label_MidColour.Size = new Size(64, 28);
-            label_MidColour.TabIndex = 21;
+            label_MidColour.TabIndex = 0;
             label_MidColour.Text = "Mid:";
             // 
             // button_EditMidColour
@@ -359,7 +359,7 @@
             button_EditMidColour.Margin = new Padding(4, 3, 4, 3);
             button_EditMidColour.Name = "button_EditMidColour";
             button_EditMidColour.Size = new Size(88, 33);
-            button_EditMidColour.TabIndex = 8;
+            button_EditMidColour.TabIndex = 7;
             button_EditMidColour.Text = "Edit";
             button_EditMidColour.UseVisualStyleBackColor = false;
             button_EditMidColour.Click += button_EditMidColour_Click;
@@ -372,7 +372,7 @@
             label_ItemsPerPage.Margin = new Padding(4, 0, 4, 0);
             label_ItemsPerPage.Name = "label_ItemsPerPage";
             label_ItemsPerPage.Size = new Size(155, 28);
-            label_ItemsPerPage.TabIndex = 16;
+            label_ItemsPerPage.TabIndex = 0;
             label_ItemsPerPage.Text = "Items/Page:";
             // 
             // textbox_ItemsPerPage
@@ -385,7 +385,8 @@
             textbox_ItemsPerPage.Name = "textbox_ItemsPerPage";
             textbox_ItemsPerPage.ReadOnly = true;
             textbox_ItemsPerPage.Size = new Size(60, 36);
-            textbox_ItemsPerPage.TabIndex = 3;
+            textbox_ItemsPerPage.TabIndex = 0;
+            textbox_ItemsPerPage.TabStop = false;
             textbox_ItemsPerPage.TextAlign = HorizontalAlignment.Center;
             // 
             // SettingsForm

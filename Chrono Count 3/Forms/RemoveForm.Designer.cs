@@ -47,7 +47,7 @@
             groupbox_remove.Name = "groupbox_remove";
             groupbox_remove.Padding = new Padding(6);
             groupbox_remove.Size = new Size(623, 143);
-            groupbox_remove.TabIndex = 11;
+            groupbox_remove.TabIndex = 0;
             groupbox_remove.TabStop = false;
             groupbox_remove.Text = "Remove";
             // 
@@ -61,7 +61,7 @@
             button_Remove.Margin = new Padding(4, 3, 4, 3);
             button_Remove.Name = "button_Remove";
             button_Remove.Size = new Size(607, 54);
-            button_Remove.TabIndex = 2;
+            button_Remove.TabIndex = 3;
             button_Remove.Text = "Remove";
             button_Remove.UseVisualStyleBackColor = false;
             button_Remove.Click += button_Remove_Click;
@@ -76,7 +76,7 @@
             combobox_ItemDropDown.Margin = new Padding(4, 3, 4, 3);
             combobox_ItemDropDown.Name = "combobox_ItemDropDown";
             combobox_ItemDropDown.Size = new Size(527, 32);
-            combobox_ItemDropDown.TabIndex = 1;
+            combobox_ItemDropDown.TabIndex = 2;
             // 
             // comboBox_PageDropDown
             // 
@@ -88,8 +88,7 @@
             comboBox_PageDropDown.Margin = new Padding(4, 3, 4, 3);
             comboBox_PageDropDown.Name = "comboBox_PageDropDown";
             comboBox_PageDropDown.Size = new Size(72, 32);
-            comboBox_PageDropDown.TabIndex = 0;
-            comboBox_PageDropDown.TabStop = false;
+            comboBox_PageDropDown.TabIndex = 1;
             comboBox_PageDropDown.SelectedIndexChanged += comboBox_PageDropDown_SelectedIndexChanged;
             // 
             // RemoveForm

@@ -51,7 +51,7 @@
             groupbox_Layout.Name = "groupbox_Layout";
             groupbox_Layout.Padding = new Padding(6);
             groupbox_Layout.Size = new Size(520, 185);
-            groupbox_Layout.TabIndex = 10;
+            groupbox_Layout.TabIndex = 0;
             groupbox_Layout.TabStop = false;
             groupbox_Layout.Text = "Create";
             // 
@@ -65,7 +65,7 @@
             textbox_Time.MaxLength = 99;
             textbox_Time.Name = "textbox_Time";
             textbox_Time.Size = new Size(314, 39);
-            textbox_Time.TabIndex = 3;
+            textbox_Time.TabIndex = 2;
             // 
             // label_Time
             // 
@@ -75,7 +75,7 @@
             label_Time.Margin = new Padding(4, 0, 4, 0);
             label_Time.Name = "label_Time";
             label_Time.Size = new Size(179, 32);
-            label_Time.TabIndex = 5;
+            label_Time.TabIndex = 0;
             label_Time.Text = "Event Time:";
             // 
             // label_Name
@@ -86,7 +86,7 @@
             label_Name.Margin = new Padding(4, 0, 4, 0);
             label_Name.Name = "label_Name";
             label_Name.Size = new Size(179, 32);
-            label_Name.TabIndex = 4;
+            label_Name.TabIndex = 0;
             label_Name.Text = "Event Name:";
             // 
             // textbox_Name
@@ -99,7 +99,7 @@
             textbox_Name.MaxLength = 99;
             textbox_Name.Name = "textbox_Name";
             textbox_Name.Size = new Size(314, 39);
-            textbox_Name.TabIndex = 2;
+            textbox_Name.TabIndex = 1;
             // 
             // button_CreateItem
             // 
@@ -111,7 +111,7 @@
             button_CreateItem.Margin = new Padding(4, 3, 4, 3);
             button_CreateItem.Name = "button_CreateItem";
             button_CreateItem.Size = new Size(501, 56);
-            button_CreateItem.TabIndex = 4;
+            button_CreateItem.TabIndex = 3;
             button_CreateItem.Text = "Create";
             button_CreateItem.UseVisualStyleBackColor = false;
             button_CreateItem.Click += button_CreateItem_Click;

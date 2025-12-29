@@ -48,7 +48,7 @@
             label_PageDisplay.Margin = new Padding(4, 0, 4, 0);
             label_PageDisplay.Name = "label_PageDisplay";
             label_PageDisplay.Size = new Size(178, 39);
-            label_PageDisplay.TabIndex = 39;
+            label_PageDisplay.TabIndex = 0;
             label_PageDisplay.Text = "#/#";
             label_PageDisplay.TextAlign = ContentAlignment.MiddleCenter;
             // 
@@ -111,7 +111,7 @@
             textbox_CurrentTime.Name = "textbox_CurrentTime";
             textbox_CurrentTime.ReadOnly = true;
             textbox_CurrentTime.Size = new Size(335, 39);
-            textbox_CurrentTime.TabIndex = 35;
+            textbox_CurrentTime.TabIndex = 0;
             textbox_CurrentTime.TabStop = false;
             // 
             // button_OpenRemoveForm
@@ -156,7 +156,7 @@
             listbox_MainDisplay.Name = "listbox_MainDisplay";
             listbox_MainDisplay.SelectionMode = SelectionMode.None;
             listbox_MainDisplay.Size = new Size(675, 32);
-            listbox_MainDisplay.TabIndex = 32;
+            listbox_MainDisplay.TabIndex = 0;
             listbox_MainDisplay.TabStop = false;
             // 
             // timer_GameTime
