@@ -133,8 +133,7 @@ namespace Chrono_Count_3.CodeFiles.TimeStamp
                 if (parts.Length < 2) continue;
 
                 string label = parts[0];
-                if (DateTime.TryParseExact(parts[1], "o", CultureInfo.InvariantCulture,
-                                           DateTimeStyles.None, out DateTime date))
+                if (DateTime.TryParseExact(parts[1], "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime date))
                 {
                     AddTimeStamp(label, date);
                 }
@@ -145,7 +144,7 @@ namespace Chrono_Count_3.CodeFiles.TimeStamp
             using StreamWriter writer = new(filePath, false);
             foreach (var item in itemList)
             {
-                writer.WriteLine($"{item.Name},{item.Date:o}");
+                writer.WriteLine($"{item.Name},{item.Date:dd/MM/yyyy HH:mm:ss}");
             }
         }
 
