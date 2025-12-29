@@ -2,7 +2,7 @@
 
 namespace Chrono_Count_3.CodeFiles.TimeStamp.TimeStampAssist
 {
-    internal class DisplayTypeFactory
+    internal static class DisplayTypeFactory
     {
         public static ITimeStampInfo Create(LengthOptions option, string name, DateTime date)
         {

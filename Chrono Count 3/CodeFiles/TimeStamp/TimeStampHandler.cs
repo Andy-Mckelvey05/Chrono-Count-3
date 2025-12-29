@@ -8,7 +8,7 @@ namespace Chrono_Count_3.CodeFiles.TimeStamp
     {
         private readonly UserSettings userSettings;
         private readonly string filePath;
-        private List<TimeStamp> itemList = new();
+        private List<TimeStamp> itemList = [];
 
         public TimeStampHandler(UserSettings userSettings,string filePath)
         {
@@ -24,18 +24,17 @@ namespace Chrono_Count_3.CodeFiles.TimeStamp
                 date,
                 userSettings.DescSize,
                 userSettings.DateSize,
-                userSettings.TimeSize
-            );
+                userSettings.TimeSize);
             itemList.Add(item);
             itemList.Sort();
+            TimeStamp.UpdateMaxLens(itemList);
         }
-
         public void RemoveTimeStamp(int index)
         {
-            itemList.Remove(itemList[index]);
+            itemList.RemoveAt(index);
             itemList.Sort();
+            TimeStamp.UpdateMaxLens(itemList);
         }
-
         public int RemoveDoneTimeStamps()
         {
             int removedCount = itemList.RemoveAll(ts => ts.Date < DateTime.Now);
@@ -43,18 +42,18 @@ namespace Chrono_Count_3.CodeFiles.TimeStamp
             if (removedCount > 0)
             {
                 itemList.Sort();
+                TimeStamp.UpdateMaxLens(itemList);
             }
 
             return removedCount;
         }
-
 
         private List<TimeStamp> GetPage(int pageIndex)
         {
             int totalPages = GetTotalPages();
             if (totalPages == 0) 
             {
-                return new List<TimeStamp>();
+                return [];
             }
 
             pageIndex = Math.Max(1, Math.Min(pageIndex, totalPages));
@@ -62,9 +61,8 @@ namespace Chrono_Count_3.CodeFiles.TimeStamp
             int pageSize = userSettings.ItemsPerPage;
             int startIndex = (pageIndex - 1) * pageSize;
 
-            return itemList.Skip(startIndex).Take(pageSize).ToList();
+            return [.. itemList.Skip(startIndex).Take(pageSize)];
         }
-
         public int GetTotalPages()
         {
             if (itemList.Count == 0) 
@@ -74,12 +72,10 @@ namespace Chrono_Count_3.CodeFiles.TimeStamp
             int pageSize = userSettings.ItemsPerPage;
             return (int)Math.Ceiling(itemList.Count / (double)pageSize);
         }
-
         public int GetItemsPerPage()
         {
             return userSettings.ItemsPerPage;
         }
-
         public int GetTotalItems()
         {
             return itemList.Count;
@@ -93,7 +89,6 @@ namespace Chrono_Count_3.CodeFiles.TimeStamp
                 listbox.Items.Add(item.ToString());
             }
         }
-
         public void DisplayAllItems(ListBox listbox)
         {
             listbox.Items.Clear();
@@ -102,7 +97,6 @@ namespace Chrono_Count_3.CodeFiles.TimeStamp
                 listbox.Items.Add(item.ToString());
             }
         }
-
         public void DisplayPageShort(ComboBox comboBox, int pageIndex)
         {
             comboBox.Items.Clear();
@@ -122,7 +116,7 @@ namespace Chrono_Count_3.CodeFiles.TimeStamp
 
         public void ReadFromFile()
         {
-            itemList = new List<TimeStamp>();
+            itemList = [];
 
             if (!File.Exists(filePath))
             {
@@ -146,15 +140,12 @@ namespace Chrono_Count_3.CodeFiles.TimeStamp
                 }
             }
         }
-
         public void UpdateFile()
         {
-            using (var writer = new StreamWriter(filePath, false))
+            using StreamWriter writer = new(filePath, false);
+            foreach (var item in itemList)
             {
-                foreach (var item in itemList)
-                {
-                    writer.WriteLine($"{item.Name},{item.Date:o}");
-                }
+                writer.WriteLine($"{item.Name},{item.Date:o}");
             }
         }
 

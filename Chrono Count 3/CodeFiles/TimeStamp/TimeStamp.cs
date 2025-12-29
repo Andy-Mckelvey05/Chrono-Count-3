@@ -12,7 +12,6 @@ namespace Chrono_Count_3.CodeFiles.TimeStamp
         private static int maxDateLen;
         private static int maxTimeLen;
 
-        // Used to Set Edit ToString
         private readonly ITimeStampInfo descItem;
         private readonly ITimeStampInfo dateItem;
         private readonly ITimeStampInfo timeItem;
@@ -25,13 +24,6 @@ namespace Chrono_Count_3.CodeFiles.TimeStamp
             descItem = DisplayTypeFactory.Create(descOption, name, date);
             dateItem = DisplayTypeFactory.Create(dateOption, name, date);
             timeItem = DisplayTypeFactory.Create(timeOption, name, date);
-
-            if (countToMax) 
-            {
-                maxNameLen = Math.Max(maxNameLen, descItem.GetDescription().Length);
-                maxDateLen = Math.Max(maxDateLen, dateItem.GetFormatDate().Length);
-                maxTimeLen = Math.Max(maxTimeLen, timeItem.GetTimeLeft().Length);
-            }
         }
 
         public string Name => name;
@@ -40,56 +32,38 @@ namespace Chrono_Count_3.CodeFiles.TimeStamp
         public string GetDate() => dateItem.GetFormatDate();
         public string GetTime() => timeItem.GetTimeLeft();
 
-        public static void UpdateMaxLens(TimeStamp[] items)
-        {
-            maxNameLen = 0;
-            foreach (TimeStamp item in items)
-            {
-                maxNameLen = Math.Max(maxNameLen, item.descItem.GetDescription().Length);
-            }
-            maxDateLen = 0;
-            foreach (TimeStamp item in items)
-            {
-                maxDateLen = Math.Max(maxDateLen, item.dateItem.GetFormatDate().Length);
-            }
-            maxTimeLen = 0;
-            foreach (TimeStamp item in items)
-            {
-                maxTimeLen = Math.Max(maxTimeLen, item.timeItem.GetTimeLeft().Length);
-            }
-        }
-
         // When Sort() is called on a list of TimeStamp, Sorts the List to Closest First
-        public int CompareTo(TimeStamp other)
+        public int CompareTo(TimeStamp? other)
         {
+            if (other is null) return 1;
             return date.Subtract(DateTime.Now).CompareTo(other.date.Subtract(DateTime.Now));
         }
 
         public override string ToString()
         {
-            string desc = descItem.GetDescription();
-            string date = dateItem.GetFormatDate();
-            string time = timeItem.GetTimeLeft();
+            string descX = descItem.GetDescription();
+            string dateX = dateItem.GetFormatDate();
+            string timeX = timeItem.GetTimeLeft();
 
-            int descPadding = Math.Max(0, maxNameLen - desc.Length);
-            int datePadding = Math.Max(0, maxDateLen - date.Length);
-            int timePadding = Math.Max(0, maxTimeLen - time.Length);
+            int descPadding = Math.Max(0, maxNameLen - descX.Length);
+            int datePadding = Math.Max(0, maxDateLen - dateX.Length);
+            int timePadding = Math.Max(0, maxTimeLen - timeX.Length);
             int inbetween = 2;
 
-            if (desc != string.Empty)
+            if (descX != string.Empty)
             {
-                desc = desc.PadRight(desc.Length + descPadding + inbetween);
+                descX = descX.PadRight(descX.Length + descPadding + inbetween);
             }
-            if (date != string.Empty)
+            if (dateX != string.Empty)
             {
-                date = date.PadRight(date.Length + datePadding + inbetween);
+                dateX = dateX.PadRight(dateX.Length + datePadding + inbetween);
             }
-            if (time != string.Empty) 
+            if (timeX != string.Empty) 
             {
-                time = time.PadLeft(time.Length + timePadding);
+                timeX = timeX.PadLeft(timeX.Length + timePadding);
             }
 
-            return desc + date + time;
+            return descX + dateX + timeX;
         }
 
         public string ToSimpleString()
@@ -101,6 +75,18 @@ namespace Chrono_Count_3.CodeFiles.TimeStamp
             string dateStr = dateItemMedium.GetFormatDate();
 
             return paddedLabel + dateStr;
+        }
+
+        public static void UpdateMaxLens(List<TimeStamp> items)
+        {
+            maxNameLen = maxDateLen = maxTimeLen = 0;
+            foreach (TimeStamp item in items)
+            {
+                maxNameLen = Math.Max(maxNameLen, item.descItem.GetDescription().Length);
+                maxDateLen = Math.Max(maxDateLen, item.dateItem.GetFormatDate().Length);
+                maxTimeLen = Math.Max(maxTimeLen, item.timeItem.GetTimeLeft().Length);
+            }
+
         }
     }
 }
