@@ -63,7 +63,7 @@ namespace Chrono_Count_3.CodeFiles.TimeStamp
                 timeX = timeX.PadLeft(timeX.Length + timePadding);
             }
 
-            return descX + dateX + timeX;
+            return (descX + dateX + timeX).Trim();
         }
 
         public string ToSimpleString()
