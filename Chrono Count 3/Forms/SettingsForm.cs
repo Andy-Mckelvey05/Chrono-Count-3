@@ -6,7 +6,7 @@ namespace Chrono_Count_3.Forms
 {
     public partial class SettingsForm : Form
     {
-        private UserSettings userSettings;
+        private readonly UserSettings userSettings;
 
         public SettingsForm(UserSettings userSettings)
         {
@@ -29,10 +29,10 @@ namespace Chrono_Count_3.Forms
             combobox_TimeLength.DataSource = Enum.GetValues(typeof(LengthOptions));
             combobox_TimeLength.SelectedItem = userSettings.TimeSize;
 
-            mockTimeStamp();
+            MockTimeStamp();
         }
 
-        private void mockTimeStamp()
+        private void MockTimeStamp()
         {
             string descOption = combobox_DescLength.SelectedItem!.ToString()!;
             string dateOption = combobox_DateLength.SelectedItem!.ToString()!;
@@ -46,25 +46,23 @@ namespace Chrono_Count_3.Forms
                 timeOption
             );
         }
-        private void combobox_DescLength_SelectionChangeCommitted(object sender, EventArgs e) { mockTimeStamp(); }
-        private void combobox_TimeLength_SelectionChangeCommitted(object sender, EventArgs e) { mockTimeStamp(); }
-        private void combobox_DateLength_SelectionChangeCommitted(object sender, EventArgs e) { mockTimeStamp(); }
-
-        private void button_ConfirmSettings_Click(object sender, EventArgs e)
+        public static void PickColor(TextBox textBox1, Panel textBox2)
         {
-            ConfirmChoises();
-        }
+            using ColorDialog colorDialog = new();
+            colorDialog.FullOpen = true;
 
-        private void button_DecrementIPP_Click(object sender, EventArgs e)
-        {
-            int ItemsPerPage = int.Parse(textbox_ItemsPerPage.Text);
-
-            if (ItemsPerPage > 1)
+            if (colorDialog.ShowDialog() == DialogResult.OK)
             {
-                ItemsPerPage--;
-                textbox_ItemsPerPage.Text = ItemsPerPage.ToString();
+                Color chosen = colorDialog.Color;
+
+                textBox1.Text = $"{chosen.R},{chosen.G},{chosen.B}";
+                textBox2.BackColor = chosen;
             }
         }
+
+        private void combobox_DescLength_SelectionChangeCommitted(object sender, EventArgs e) => MockTimeStamp();
+        private void combobox_TimeLength_SelectionChangeCommitted(object sender, EventArgs e) => MockTimeStamp();
+        private void combobox_DateLength_SelectionChangeCommitted(object sender, EventArgs e) => MockTimeStamp();
 
         private void button_IncrementIPP_Click(object sender, EventArgs e)
         {
@@ -76,45 +74,17 @@ namespace Chrono_Count_3.Forms
                 textbox_ItemsPerPage.Text = ItemsPerPage.ToString();
             }
         }
-
-
-        private void ConfirmChoises()
+        private void button_DecrementIPP_Click(object sender, EventArgs e)
         {
-            UserSettingDto choises = new UserSettingDto
-            {
-                itemsPerPageDTO = int.Parse(textbox_ItemsPerPage.Text),
-                colourSchemeDTO =
-                [
-                    textbox_ForeColour.Text.Split(',').Select(int.Parse).ToArray(),
-                    textbox_MidColour.Text.Split(',').Select(int.Parse).ToArray(),
-                    textbox_BackColour.Text.Split(',').Select(int.Parse).ToArray()
-                ],
-                descSizeDTO = (LengthOptions)Enum.Parse(typeof(LengthOptions), combobox_DescLength.SelectedItem.ToString()!),
-                dateSizeDTO = (LengthOptions)Enum.Parse(typeof(LengthOptions), combobox_DateLength.SelectedItem.ToString()!),
-                timeSizeDTO = (LengthOptions)Enum.Parse(typeof(LengthOptions), combobox_TimeLength.SelectedItem.ToString()!)
-            };
+            int ItemsPerPage = int.Parse(textbox_ItemsPerPage.Text);
 
-            if (MessageBox.Show("Are you sure? This will close the program.", "Confirm Exit", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            if (ItemsPerPage > 1)
             {
-                userSettings.WriteSettingsJSON(choises);
+                ItemsPerPage--;
+                textbox_ItemsPerPage.Text = ItemsPerPage.ToString();
             }
         }
 
-        public static void PickColor(TextBox textBox1, Panel textBox2)
-        {
-            using (ColorDialog colorDialog = new ColorDialog())
-            {
-                colorDialog.FullOpen = true;
-
-                if (colorDialog.ShowDialog() == DialogResult.OK)
-                {
-                    Color chosen = colorDialog.Color;
-
-                    textBox1.Text = $"{chosen.R},{chosen.G},{chosen.B}";
-                    textBox2.BackColor = chosen;
-                }
-            }
-        }
         private void button_EditForeColour_Click(object sender, EventArgs e)
         {
             PickColor(textbox_ForeColour, ForeColourIndicator);
@@ -128,6 +98,27 @@ namespace Chrono_Count_3.Forms
             PickColor(textbox_BackColour, BackColourIndicator);
         }
 
+        private void button_ConfirmSettings_Click(object sender, EventArgs e)
+        {
+            UserSettingDto choises = new()
+            {
+                itemsPerPageDTO = int.Parse(textbox_ItemsPerPage.Text),
+                colourSchemeDTO =
+                [
+                    [.. textbox_ForeColour.Text.Split(',').Select(int.Parse)],
+                    [.. textbox_MidColour.Text.Split(',').Select(int.Parse)],
+                    [.. textbox_BackColour.Text.Split(',').Select(int.Parse)]
+                ],
+                descSizeDTO = (LengthOptions)combobox_DescLength.SelectedItem!,
+                dateSizeDTO = (LengthOptions)combobox_DateLength.SelectedItem!,
+                timeSizeDTO = (LengthOptions)combobox_TimeLength.SelectedItem!
+            };
+
+            if (MessageBox.Show("Are you sure? This will close the program.", "Confirm Exit", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            {
+                userSettings.WriteSettingsJSON(choises);
+            }
+        }
         private void button_SetDefault_Click(object sender, EventArgs e)
         {
             UserSettingDto choises = userSettings.GetDefaultSettings();
